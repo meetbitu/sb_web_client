@@ -2,6 +2,12 @@ name: social-buying-web-client
 services:
   appserver:
     type: node
+    port: 3000
+    build:
+      - yarn install
+tooling:
+  yarn:
+    service: appserver
 proxy:
   appserver:
     - social-buying-web-client.lndo.site
