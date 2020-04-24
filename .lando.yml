@@ -1,0 +1,7 @@
+name: social-buying-web-client
+services:
+  appserver:
+    type: node
+proxy:
+  appserver:
+    - social-buying-web-client.lndo.site
