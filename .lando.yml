@@ -5,12 +5,6 @@ services:
     port: '3000'
     build:
       - yarn install
-  nginx:
-    type: nginx
-    ssl: true
-    webroot: app/public
-    config:
-      vhosts: config/custom.conf
 tooling:
   yarn:
     service: appserver
