@@ -17,8 +17,25 @@ input {
   font-size: 24px;
 }
 
+input[name=name] {
+  margin-left: 8px;
+}
+
+input[name=number] {
+  width: 50px;
+}
+
+label {
+  display: block;
+}
+
 button[type=submit] {
   font-size: 18px;
   margin-top: 12px;
   display: inline-block;
+}
+
+.copy-share-link {
+  margin-bottom: 20px;
+  font-size: 12px;
 }

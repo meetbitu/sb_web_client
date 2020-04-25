@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import React from 'react';
 import socketio from '@feathersjs/socketio-client';
 
-function SubmistRequestForm() {
+function SubmistRequestForm({ switchForm, setInviteId }) {
   // Feathers api setup
   const baseUrl = {
     rest: 'http://appserver.socialbuyingapi.internal:3030',
@@ -44,7 +44,10 @@ function SubmistRequestForm() {
       text: event.target.request.value
     }).then((data) => {
       console.log(data);
+      switchForm();
+      setInviteId(data._id);
     });
+
 
   }
 
