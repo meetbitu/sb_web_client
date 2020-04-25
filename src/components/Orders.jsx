@@ -1,10 +1,17 @@
 import React from 'react';
+import Order from './Order.jsx';
 
 function Orders({ orders }) {
-  console.log({ orders });
+  const allOrders = orders.map((order, index, array) => {
+    return (
+      <Order order={order} key={order._id}/>
+    );
+  });
 
   return (
-    <div />
+    <div className="orders">
+      {allOrders}
+    </div>
   );
 }
 

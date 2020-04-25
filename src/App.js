@@ -67,7 +67,7 @@ function App() {
 
   if (invite && invite._id) {
     orderService
-      .find({ inviteId: invite._id })
+      .find({ query: { inviteId: invite._id }})
       .then(data => {
         if (orders.length !== data.data.length) {
           setOrders(data.data);
