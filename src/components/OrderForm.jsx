@@ -10,19 +10,6 @@ function OrderForm({ invite }) {
     socket: 'http://social-buying-api.lndo.site',
   };
 
-  // REST
-  // const rest = require('@feathersjs/rest-client');
-  // const client = feathers();
-
-  // // Connect to a different URL
-  // const restClient = rest(baseUrl.rest);
-
-  // // Configure an AJAX library (see below) with that client
-  // client.configure(restClient.fetch(window.fetch));
-
-  // // Connect to the `http://feathers-api.com/orders` service
-  // const orderService = client.service('orders');
-
   // Websockets
   const socket = io(baseUrl.socket, {
     transports: ['websocket'],
@@ -40,12 +27,14 @@ function OrderForm({ invite }) {
     event.preventDefault();
 
     // Use the orders service from the server
-    // orderService.create({
-    //   text: event.target.order.value
-    //   inviteId: ....,
-    // }).then((data) => {
-    //   console.log(data);
-    // });
+    orderService.create({
+      name: event.target.name.value,
+      quantity: event.target.quantity.value,
+      order: event.target.order.value,
+      inviteId: invite._id,
+    }).then((data) => {
+      console.log(data);
+    });
 
   }
 
@@ -70,7 +59,7 @@ function OrderForm({ invite }) {
       <label>
         <input
           type="number"
-          name="number"
+          name="quantity"
           placeholder="3"
         />
         <input

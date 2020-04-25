@@ -18,9 +18,10 @@ function App() {
       text: searchParams.get('text'),
     };
   }
-  console.log(existingInvite);
+
   const [invite, setInvite] = useState(existingInvite);
 
+  // eslint-disable-next-line no-unused-vars
   function setInviteData(data) {
     setInvite(invite);
   }
