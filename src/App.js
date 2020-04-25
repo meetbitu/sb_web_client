@@ -53,7 +53,7 @@ function App() {
   return (
     <div className="App">
       <header>
-        <h1>Social Buying</h1>
+        <h1>Wanna get in on this?</h1>
       </header>
       <form
         className="submit-request"
@@ -62,13 +62,16 @@ function App() {
         <input
           type="text"
           name="request"
+          placeholder="Jolibee tonight"
         />
-        <button
-          type="submit"
-          className="request-submit"
-        >
-          Request
-        </button>
+        <div className="form-actions">
+          <button
+            type="submit"
+            className="request-submit"
+          >
+            Get share link
+          </button>
+        </div>
       </form>
     </div>
   );
