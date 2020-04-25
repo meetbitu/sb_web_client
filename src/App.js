@@ -9,25 +9,29 @@ import './App.css';
 
 function App() {
 
-  const [order, setOrder] = useState(false);
-  const [_id, setId] = useState(null);
-
-  function switchForm() {
-    setOrder(!order);
+  const paramsString = window.location.search;
+  const searchParams = new URLSearchParams(paramsString);
+  let existingInvite = null;
+  if (searchParams.get('invite') && searchParams.get('text')) {
+    existingInvite = {
+      _id: searchParams.get('invite'),
+      text: searchParams.get('text'),
+    };
   }
+  console.log(existingInvite);
+  const [invite, setInvite] = useState(existingInvite);
 
-  function setInviteId(_id) {
-    setId(_id);
+  function setInviteData(data) {
+    setInvite(invite);
   }
 
   function renderForms() {
-    if (order && _id) {
-      return <OrderForm _id={_id} />;
+    if (invite) {
+      return <OrderForm invite={invite} />;
     }
     else {
       return (<SubmitRequestForm
-        switchForm={switchForm}
-        setInviteId={setInviteId}
+        setInvite={setInvite}
       />);
     }
   }

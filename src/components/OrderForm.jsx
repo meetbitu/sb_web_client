@@ -3,7 +3,7 @@ import io from 'socket.io-client';
 import React from 'react';
 import socketio from '@feathersjs/socketio-client';
 
-function OrderForm({ _id }) {
+function OrderForm({ invite }) {
   // Feathers api setup
   const baseUrl = {
     rest: 'http://appserver.socialbuyingapi.internal:3030',
@@ -55,14 +55,15 @@ function OrderForm({ _id }) {
       onSubmit={submitRequest}
     >
       <header>
-        <h2>Jolibee tonight 🍗</h2>
+        <h2>{invite.text}</h2>
         <label>
           Copy this link and send to your friends
           <input
             type="text"
             name="share-link"
             className="copy-share-link"
-            value={`http://social-buying-web-client.lndo.site/?invite=${_id}`}
+            value={encodeURI(`http://social-buying-web-client.lndo.site/?invite=${invite._id}&text=${invite.text}`)}
+            readOnly
           />
         </label>
       </header>
