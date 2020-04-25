@@ -1,28 +1,6 @@
-import feathers from '@feathersjs/feathers';
-import io from 'socket.io-client';
 import React from 'react';
-import socketio from '@feathersjs/socketio-client';
 
-function OrderForm({ invite }) {
-  // Feathers api setup
-  const baseUrl = {
-    rest: 'http://appserver.socialbuyingapi.internal:3030',
-    socket: 'http://social-buying-api.lndo.site',
-  };
-
-  // Websockets
-  const socket = io(baseUrl.socket, {
-    transports: ['websocket'],
-    forceNew: true
-  });
-
-  const client = feathers();
-  client.configure(socketio(socket));
-
-  const orderService = client.service('orders');
-
-  orderService.on('created', order => console.log('Created a order', order));
-
+function OrderForm({ invite, orderService }) {
   function submitRequest(event) {
     event.preventDefault();
 
