@@ -62,14 +62,14 @@ function App() {
         <input
           type="text"
           name="request"
-          placeholder="Jolibee tonight"
+          placeholder="Jolibee tonight 🍗"
         />
         <div className="form-actions">
           <button
             type="submit"
             className="request-submit"
           >
-            Get share link
+            Invite your friends
           </button>
         </div>
       </form>
