@@ -1,6 +1,6 @@
 import feathers from '@feathersjs/feathers';
 import io from 'socket.io-client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import socketio from '@feathersjs/socketio-client';
 
 // Components
@@ -59,20 +59,45 @@ function App() {
   // Subscribe to all orders related to this invite
   client.on('connection', connection => {
     // On a new real-time connection, add it to the
-    // orders channel
-    client.channel('orders').join(connection);
+    // authenticated channel
+    client.channel('anonymous').join(connection);
+
+    console.log(client.channels);
   });
 
   orderService.on('created', order => console.log('Created a order', order));
 
-  if (invite && invite._id) {
-    orderService
-      .find({ query: { inviteId: invite._id }})
-      .then(data => {
-        if (orders.length !== data.data.length) {
-          setOrders(data.data);
-        }
-      });
+  // https://www.robinwieruch.de/react-hooks-fetch-data
+  // https://docs.feathersjs.com/guides/basics/starting.html#in-the-browser
+  useEffect(() => {
+    const fetchData = async () => {
+      // Find all existing orders
+      // const orders = await client.service('orders').find();
+      const orders = await orderService.find();
+
+      // Add existing orders to the list
+      // orders.forEach(addOrder);
+      setOrders(orders);
+
+      // Add any newly created message to the list in real-time
+      // client.service('orders').on('created', addOrder);
+    };
+    fetchData();
+  }, [orderService, client]);
+
+  // if (invite && invite._id) {
+  //   orderService
+  //     .find({ query: { inviteId: invite._id }})
+  //     .then(data => {
+  //       if (orders.length !== data.data.length) {
+  //         setOrders(data.data);
+  //       }
+  //     });
+  // }
+
+  function addOrder(order) {
+    orders.push(order);
+    setOrders(orders);
   }
 
   // eslint-disable-next-line no-unused-vars
