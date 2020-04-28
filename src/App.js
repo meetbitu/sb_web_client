@@ -36,7 +36,7 @@ function App() {
   function baseUrl() {
     let api = 'http://social-buying-api.lndo.site';
     if (process.env.NODE_ENV === 'production') {
-      api = 'http://pasabay.teamsagan.com';
+      api = 'http://pasabay-api.teamsagan.com';
     }
 
     return api;
