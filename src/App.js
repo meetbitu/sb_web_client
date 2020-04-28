@@ -33,12 +33,16 @@ function App() {
    * Request service setup
    */
   // Feathers api setup
-  const baseUrl = {
-    rest: 'http://appserver.socialbuyingapi.internal:3030',
-    socket: 'http://social-buying-api.lndo.site',
-  };
+  function baseUrl() {
+    let api = 'http://social-buying-api.lndo.site';
+    if (process.env.NODE_ENV === 'production') {
+      api = 'http://pasabay.teamsagan.com';
+    }
 
-  const socket = io(baseUrl.socket, {
+    return api;
+  }
+
+  const socket = io(baseUrl(), {
     transports: ['websocket'],
     forceNew: true
   });
