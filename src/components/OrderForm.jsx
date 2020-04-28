@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-function OrderForm({ invite, orderService }) {
+const OrderForm = ({ invite, orderService }) => {
+  const initialState = {
+      quantity: "",
+      order: "",
+      name: "",
+  };
+  const [input, setInput] = useState(initialState)
+
+  const handleInputChange = (e) => setInput({
+    ...input,
+    [e.currentTarget.name]: e.currentTarget.value
+  });
+
   function submitRequest(event) {
     event.preventDefault();
 
@@ -12,6 +24,7 @@ function OrderForm({ invite, orderService }) {
       inviteId: invite._id,
     }).then((data) => {
       console.log(data);
+      setInput(initialState);
     });
 
   }
@@ -38,11 +51,15 @@ function OrderForm({ invite, orderService }) {
         <input
           type="number"
           name="quantity"
+          value={input.quantity}
+          onChange={handleInputChange}
           placeholder="3"
         />
         <input
           type="text"
           name="order"
+          value={input.order}
+          onChange={handleInputChange}
           placeholder="Chickenjoy"
         />
       </label>
@@ -51,6 +68,8 @@ function OrderForm({ invite, orderService }) {
         <input
           type="text"
           name="name"
+          value={input.name}
+          onChange={handleInputChange}
           placeholder="Name"
         />
       </label>
