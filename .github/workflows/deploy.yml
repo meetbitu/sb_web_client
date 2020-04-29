@@ -31,8 +31,12 @@ jobs:
     - run: yarn build
     # - run: rsync -avz --delete -e 'ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no' build/* bitu@188.166.204.149:/var/www/sb_web_client
     - name: Deploy
+      # Original:
       # uses: contention/rsync-deployments@v1.0.0
-      uses: oncletom/rsync-deployments@cc9f383f3399baa56527dcfd97cfee6a2da58f18
+      # Working fork:
+      # uses: oncletom/rsync-deployments@cc9f383f3399baa56527dcfd97cfee6a2da58f18
+      # Our fork to make sure nothing changes:
+      uses: meetbitu/rsync-deployments@cc9f383f3399baa56527dcfd97cfee6a2da58f18
       env:
         DEPLOY_KEY: ${{secrets.DEPLOY}}
       with:
