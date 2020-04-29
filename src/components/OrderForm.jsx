@@ -37,7 +37,6 @@ const OrderForm = ({ invite, orderService }) => {
     >
       <header>
         <h2>{invite.text}</h2>
-        <div className="messages">{message}</div>
         <label>
           Copy this link and send to your friends
           <input
@@ -81,6 +80,9 @@ const OrderForm = ({ invite, orderService }) => {
           Thankssss!
         </button>
       </div>
+      <footer>
+        <div className="messages">{message}</div>
+      </footer>
     </form>
   );
 }
