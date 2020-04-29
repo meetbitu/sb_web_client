@@ -22,11 +22,17 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-        deploy: ${{ secrets.DEPLOY }}
-    - run: mkdir ~/.ssh
-    - run: echo $deploy > ~/.ssh/deploy_key
-    - run: chmod 600 ~/.ssh/deploy_key
+        # deploy: ${{ secrets.DEPLOY }}
+    # - run: mkdir ~/.ssh
+    # - run: echo $deploy > ~/.ssh/deploy_key
+    # - run: chmod 600 ~/.ssh/deploy_key
     - run: yarn install --frozen-lockfile
     - run: yarn test
     - run: yarn build
-    - run: rsync -avz --delete -e 'ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no' build/* bitu@188.166.204.149:/var/www/sb_web_client
+    # - run: rsync -avz --delete -e 'ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no' build/* bitu@188.166.204.149:/var/www/sb_web_client
+    - name: Deploy
+      uses: contention/rsync-deployments@v1.0.0
+      env:
+        DEPLOY_KEY: ${{secrets.DEPLOY}}
+      with:
+        args: "-avzr --delete build/* bitu@188.166.204.149:/var/www/sb_web_client"
