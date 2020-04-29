@@ -40,7 +40,7 @@ jobs:
       env:
         DEPLOY_KEY: ${{secrets.DEPLOY}}
       with:
-        USER_AND_HOST: bitu@188.166.204.149
+        USER_AND_HOST: ${{secrets.USERNAME}}@${{secrets.HOST}}
         DEST: /var/www/sb_web_client
         SRC: build/*
         RSYNC_OPTIONS: -avz --delete
