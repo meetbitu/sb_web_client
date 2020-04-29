@@ -22,7 +22,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-        deploy: ${{ secrets.DEPLOY }}
+        deploy: ${{ secrets.DEPLOY_OPENSSH }}
     - run: echo $deploy >> ~/id_rsa
     - run: chmod 600 ~/id_rsa
     - run: yarn install --frozen-lockfile
