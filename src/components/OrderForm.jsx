@@ -6,7 +6,8 @@ const OrderForm = ({ invite, orderService }) => {
       order: "",
       name: "",
   };
-  const [input, setInput] = useState(initialState)
+  const [input, setInput] = useState(initialState);
+  const [message, setMessage] = useState();
 
   const handleInputChange = (e) => setInput({
     ...input,
@@ -23,7 +24,7 @@ const OrderForm = ({ invite, orderService }) => {
       order: event.target.order.value,
       inviteId: invite._id,
     }).then((data) => {
-      console.log(data);
+      setMessage(`${input.name} ordered ${input.quantity} ${input.order}`);
       setInput(initialState);
     });
 
@@ -36,6 +37,7 @@ const OrderForm = ({ invite, orderService }) => {
     >
       <header>
         <h2>{invite.text}</h2>
+        <div className="messages">{message}</div>
         <label>
           Copy this link and send to your friends
           <input
@@ -47,22 +49,20 @@ const OrderForm = ({ invite, orderService }) => {
           />
         </label>
       </header>
-      <label>
-        <input
-          type="number"
-          name="quantity"
-          value={input.quantity}
-          onChange={handleInputChange}
-          placeholder="3"
-        />
-        <input
-          type="text"
-          name="order"
-          value={input.order}
-          onChange={handleInputChange}
-          placeholder="Chickenjoy"
-        />
-      </label>
+      <input
+        type="number"
+        name="quantity"
+        value={input.quantity}
+        onChange={handleInputChange}
+        placeholder="3"
+      />
+      <input
+        type="text"
+        name="order"
+        value={input.order}
+        onChange={handleInputChange}
+        placeholder="Chickenjoy"
+      />
       <label>
         for
         <input

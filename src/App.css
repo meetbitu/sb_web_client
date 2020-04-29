@@ -39,3 +39,7 @@ button[type=submit] {
   margin-bottom: 20px;
   font-size: 12px;
 }
+
+.messages {
+  color: #abcdef;
+}
