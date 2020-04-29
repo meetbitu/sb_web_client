@@ -23,7 +23,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         deploy: ${{ secrets.DEPLOY }}
-    - run: apt-get -yq install openssh-client
+    - run: sudo apt-get -yq install openssh-client
     - run: mkdir ~/.ssh
     - run: echo $deploy > ~/.ssh/deploy_key
     - run: chmod 600 ~/.ssh/deploy_key
