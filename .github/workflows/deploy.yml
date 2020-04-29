@@ -29,11 +29,14 @@ jobs:
     - run: yarn install --frozen-lockfile
     - run: yarn test
     - run: yarn build
-    - run: sh -c "rsync -avz --delete -e 'ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no' build/* bitu@188.166.204.149:/var/www/sb_web_client"
     # - run: rsync -avz --delete -e 'ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no' build/* bitu@188.166.204.149:/var/www/sb_web_client
-    # - name: Deploy
-    #   uses: contention/rsync-deployments@v1.0.0
-    #   env:
-    #     DEPLOY_KEY: ${{secrets.DEPLOY}}
-    #   with:
-    #     args: "-avzr --delete build/* bitu@188.166.204.149:/var/www/sb_web_client"
+    - name: Deploy
+      # uses: contention/rsync-deployments@v1.0.0
+      uses: oncletom/rsync-deployments@cc9f383f3399baa56527dcfd97cfee6a2da58f18
+      env:
+        DEPLOY_KEY: ${{secrets.DEPLOY}}
+      with:
+        USER_AND_HOST: bitu@188.166.204.149
+        DEST: /var/www/sb_web_client
+        SRC: build/*
+        RSYNC_OPTIONS: -avz --delete
