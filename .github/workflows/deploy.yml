@@ -22,10 +22,10 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-        deploy: ${{ secrets.DEPLOY_OPENSSH }}
-    - run: echo $deploy >> ~/id_rsa
-    - run: chmod 600 ~/id_rsa
+        deploy: ${{ secrets.DEPLOY_PEM }}
+    - run: echo $deploy >> ~/id_rsa.pem
+    - run: chmod 600 ~/id_rsa.pem
     - run: yarn install --frozen-lockfile
     - run: yarn test
     - run: yarn build
-    - run: rsync -avz --delete -e 'ssh -i ~/id_rsa -o StrictHostKeyChecking=no' build/* bitu@188.166.204.149:/var/www/sb_web_client
+    - run: rsync -avz --delete -e 'ssh -i ~/id_rsa.pem -o StrictHostKeyChecking=no' build/* bitu@188.166.204.149:/var/www/sb_web_client
