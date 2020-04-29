@@ -42,7 +42,7 @@ const OrderForm = ({ invite, orderService }) => {
             type="text"
             name="share-link"
             className="copy-share-link"
-            value={encodeURI(`${window.location}/?invite=${invite._id}&text=${invite.text}`)}
+            value={encodeURI(`${window.location}?invite=${invite._id}&text=${invite.text}`)}
             onChange={() => {}}
           />
         </label>
