@@ -23,10 +23,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         deploy: ${{ secrets.DEPLOY }}
+    - run: apt-get -yq install openssh-client
     - run: mkdir ~/.ssh
-    - run: echo $deploy > ~/.ssh/id_rsa
-    - run: chmod 600 ~/.ssh/id_rsa
+    - run: echo $deploy > ~/.ssh/deploy_key
+    - run: chmod 600 ~/.ssh/deploy_key
     - run: yarn install --frozen-lockfile
     - run: yarn test
     - run: yarn build
-    - run: rsync -avz --delete -e 'ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no' build/* bitu@188.166.204.149:/var/www/sb_web_client
+    - run: rsync -avz --delete -e 'ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no' build/* bitu@188.166.204.149:/var/www/sb_web_client
