@@ -33,16 +33,12 @@ function App() {
    * Request service setup
    */
   // Feathers api setup
-  function baseUrl() {
-    let api = 'http://social-buying-api.lndo.site';
-    if (process.env.NODE_ENV === 'production') {
-      api = 'http://api.teamsagan.com';
-    }
-
-    return api;
+  if (process.env.REACT_APP_API_URL === undefined) {
+    return (
+      <div>ERROR: Please create a .env file and define process.env.REACT_APP_API_URL</div>
+      );
   }
-
-  const socket = io(baseUrl(), {
+  const socket = io(process.env.REACT_APP_API_URL, {
     transports: ['websocket'],
     forceNew: true
   });
