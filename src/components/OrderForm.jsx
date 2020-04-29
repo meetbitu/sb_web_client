@@ -42,8 +42,8 @@ const OrderForm = ({ invite, orderService }) => {
             type="text"
             name="share-link"
             className="copy-share-link"
-            value={encodeURI(`http://social-buying-web-client.lndo.site/?invite=${invite._id}&text=${invite.text}`)}
-            readOnly
+            value={encodeURI(`${window.location}/?invite=${invite._id}&text=${invite.text}`)}
+            onChange={() => {}}
           />
         </label>
       </header>
