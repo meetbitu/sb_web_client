@@ -75,7 +75,7 @@ function App() {
     setInvite(invite);
   }
 
-  function renderForms() {
+  function renderForms( {
     if (invite) {
       return (
         <div className="order-container">
