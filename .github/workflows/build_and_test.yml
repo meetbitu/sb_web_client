@@ -4,7 +4,7 @@
 name: Node.js CI
 
 on:
-  push:
+  pull_request:
     branches: [ master ]
 
 jobs:
@@ -22,8 +22,6 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: ${{ secrets.DEPLOY }} >> ~/.ssh/id_rsa
     - run: yarn install --frozen-lockfile
     - run: yarn build
     - run: yarn test
-    - run: rsync -avz --delete -e 'ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no' build/* bitu@188.166.204.149:/var/www/sb_web_client
