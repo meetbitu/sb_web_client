@@ -23,8 +23,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         deploy: ${{ secrets.DEPLOY }}
-    - run: echo $deploy >> ~/.ssh/id_rsa
+    - run: echo $deploy >> ~/id_rsa
     - run: yarn install --frozen-lockfile
     - run: yarn build
     - run: yarn test
-    - run: rsync -avz --delete -e 'ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no' build/* bitu@188.166.204.149:/var/www/sb_web_client
+    - run: rsync -avz --delete -e 'ssh -i ~/id_rsa -o StrictHostKeyChecking=no' build/* bitu@188.166.204.149:/var/www/sb_web_client
