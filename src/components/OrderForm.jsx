@@ -19,9 +19,9 @@ const OrderForm = ({ invite, orderService }) => {
 
     // Use the orders service from the server
     orderService.create({
-      name: event.target.name.value,
-      quantity: event.target.quantity.value,
-      order: event.target.order.value,
+      name: input.name,
+      quantity: input.quantity,
+      order: input.order,
       inviteId: invite._id,
     }).then((data) => {
       setMessage(`${input.name} ordered ${input.quantity} ${input.order}`);
@@ -81,7 +81,7 @@ const OrderForm = ({ invite, orderService }) => {
         </button>
       </div>
       <footer>
-        <div className="messages">{message}</div>
+        <h3 className="messages">{message}</h3>
       </footer>
     </form>
   );

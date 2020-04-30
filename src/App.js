@@ -2,7 +2,6 @@ import feathers from '@feathersjs/feathers';
 import io from 'socket.io-client';
 import React, { useState } from 'react';
 import socketio from '@feathersjs/socketio-client';
-import Mixpanel from './imports/Mixpanel';
 
 // Components
 import SubmitRequestForm from './components/SubmitRequestForm.jsx';
@@ -98,8 +97,6 @@ function App() {
   function renderRelatedOrders() {
     return (orders.length) ? <Orders orders={orders} /> : '';
   }
-
-  Mixpanel.track('Load invite form');
 
   return (
     <div className="App">
