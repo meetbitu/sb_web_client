@@ -37,8 +37,6 @@ function SubmistRequestForm({ setInvite, inviteService }) {
 
   }
 
-  Mixpanel.track('Load initial request form');
-
   return (
     <form
       className="submit-request"
