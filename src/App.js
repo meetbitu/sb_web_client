@@ -1,7 +1,10 @@
-import feathers from '@feathersjs/feathers';
+import feathers from '@feathersjs/client';
 import io from 'socket.io-client';
-import React, { useState } from 'react';
-import socketio from '@feathersjs/socketio-client';
+import React, {
+  useEffect,
+  useState,
+} from 'react';
+// import socketio from '@feathersjs/socketio-client';
 import Mixpanel from './imports/Mixpanel';
 
 // Components
@@ -12,8 +15,23 @@ import Orders from './components/Orders.jsx';
 // Styles
 import './App.css';
 
-function App() {
+/**
+ * Feathers websocket connection
+ */
+const socket = io(process.env.REACT_APP_API_URL);
+const client = feathers();
+client.configure(feathers.socketio(socket));
 
+// this works:
+// client.service('invites').create({
+//   text: 'invite from client init'
+// });
+
+// Feathers Services
+const inviteService = client.service('invites');
+const orderService = client.service('orders');
+
+function App() {
   const paramsString = window.location.search;
   const searchParams = new URLSearchParams(paramsString);
   let existingInvite = null;
@@ -25,51 +43,58 @@ function App() {
   }
 
   const [invite, setInvite] = useState(existingInvite);
-  const [orders, setOrders] = useState({});
+  const [orders, setOrders] = useState([]);
 
-  /**
-   * Feathers websocket connection
-   */
-  /**
-   * Request service setup
-   */
-  // Feathers api setup
-  const socket = io(process.env.REACT_APP_API_URL, {
-    transports: ['websocket'],
-    forceNew: true
-  });
-  const client = feathers();
-  client.configure(socketio(socket));
 
   /**
    * Invite service
    */
-  const inviteService = client.service('invites');
-  inviteService.on('created', invite => console.log('Created a invite', invite));
+  // Get new invites from the server
+  // useEffect(() => {
+  //   inviteService.on('created', invite => {
+  //     // setMessageCount(messageCount + 1);
+  //     // document.title = `${messageCount} new messages have been emitted`;
+  //   });
+  // }, []);
 
   /**
    * Order service
    */
-  const orderService = client.service('orders');
+  //
+  // useEffect(() => {
+  //   inviteService.on('created', invite => {
 
-  // Subscribe to all orders related to this invite
-  client.on('connection', connection => {
-    // On a new real-time connection, add it to the
-    // orders channel
-    client.channel('orders').join(connection);
+  //     // Subscribe to all orders related to this invite
+  //     client.on('connection', connection => {
+  //       // On a new real-time connection, add it to the
+  //       // orders channel
+  //       client.channel('orders').join(connection);
+  //     });
+  //   });
+  // }, []); //only re-run the effect if new message comes in
+
+  // Get existing orders
+  useEffect(() => {
+    if (invite && invite._id) {
+      // @TOOD: Connect to an invite specific room
+      orderService
+        .find({ query: { inviteId: invite._id }})
+        .then(data => {
+          if (orders.length !== data.data.length) {
+            setOrders(data.data);
+          }
+        });
+    }
   });
 
-  orderService.on('created', order => console.log('Created a order', order));
+  // Get new orders as they come in
+  useEffect(() => {
+    orderService.on('created', order => {
+      // Merge with orders and setOrders
+      setOrders(orders.concat(order));
+    });
+  });
 
-  if (invite && invite._id) {
-    orderService
-      .find({ query: { inviteId: invite._id }})
-      .then(data => {
-        if (orders.length !== data.data.length) {
-          setOrders(data.data);
-        }
-      });
-  }
 
   // eslint-disable-next-line no-unused-vars
   function setInviteData(data) {
