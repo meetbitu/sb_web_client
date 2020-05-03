@@ -1,4 +1,8 @@
-import React, { useState } from 'react';
+import Mixpanel from '../imports/Mixpanel';
+import React, {
+  useState,
+  useEffect,
+} from 'react';
 
 const OrderForm = ({ invite, orderService }) => {
   const initialState = {
@@ -8,6 +12,10 @@ const OrderForm = ({ invite, orderService }) => {
   };
   const [input, setInput] = useState(initialState);
   const [message, setMessage] = useState();
+
+  useEffect(() => {
+    Mixpanel.first_contact('order form');
+  }, []); // Only fire once
 
   const handleInputChange = (e) => setInput({
     ...input,

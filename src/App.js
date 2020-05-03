@@ -4,8 +4,6 @@ import React, {
   useEffect,
   useState,
 } from 'react';
-// import socketio from '@feathersjs/socketio-client';
-import Mixpanel from './imports/Mixpanel';
 
 // Components
 import SubmitRequestForm from './components/SubmitRequestForm.jsx';
@@ -43,7 +41,8 @@ function App() {
   }
 
   const [invite, setInvite] = useState(existingInvite);
-  const [orders, setOrders] = useState([]);
+  const [existingOrders, setExistingOrders] = useState([]);
+  const [newOrders, setNewOrders] = useState([]);
 
 
   /**
@@ -80,26 +79,18 @@ function App() {
       orderService
         .find({ query: { inviteId: invite._id }})
         .then(data => {
-          if (orders.length !== data.data.length) {
-            setOrders(data.data);
-          }
+          setExistingOrders(data.data);
         });
     }
-  });
+  }, [invite]);
 
   // Get new orders as they come in
   useEffect(() => {
     orderService.on('created', order => {
       // Merge with orders and setOrders
-      setOrders(orders.concat(order));
+      setNewOrders(newOrders.concat(order));
     });
   });
-
-
-  // eslint-disable-next-line no-unused-vars
-  function setInviteData(data) {
-    setInvite(invite);
-  }
 
   function renderForms() {
     if (invite) {
@@ -120,11 +111,13 @@ function App() {
     }
   }
 
-  function renderRelatedOrders() {
-    return (orders.length) ? <Orders orders={orders} /> : '';
+  function renderNewOrders() {
+    return (newOrders.length) ? <Orders orders={newOrders} /> : '';
   }
 
-  Mixpanel.track('Load initial request form');
+  function renderExistingOrders() {
+    return (existingOrders.length) ? <Orders orders={existingOrders} /> : '';
+  }
 
   return (
     <div className="App">
@@ -132,7 +125,8 @@ function App() {
         <h1>Make Sabay</h1>
       </header>
       { renderForms() }
-      { renderRelatedOrders() }
+      { renderNewOrders() }
+      { renderExistingOrders() }
     </div>
   );
 }

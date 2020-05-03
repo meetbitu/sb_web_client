@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, {
+  useState,
+  useEffect,
+} from 'react';
 import Mixpanel from '../imports/Mixpanel';
 
 function SubmistRequestForm({ setInvite, inviteService }) {
@@ -7,6 +10,10 @@ function SubmistRequestForm({ setInvite, inviteService }) {
   };
   const [input, setInput] = useState(initialState);
   const [startedTyping, setTyping] = useState(false);
+
+  useEffect(() => {
+    Mixpanel.first_contact('submit request form');
+  }, []); // Only fire once
 
   const handleInputChange = (e) => {
     if (!startedTyping) {
