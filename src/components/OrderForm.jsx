@@ -14,7 +14,11 @@ const OrderForm = ({ invite, orderService }) => {
   const [message, setMessage] = useState();
 
   useEffect(() => {
-    Mixpanel.first_contact('order form');
+    Mixpanel.first_contact({
+      'first_contact': 'order form',
+      'first_contact_time': Date.now(),
+      // 'referring_user': '',
+    });
   }, []); // Only fire once
 
   const handleInputChange = (e) => setInput({

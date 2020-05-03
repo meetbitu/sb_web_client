@@ -12,7 +12,10 @@ function SubmistRequestForm({ setInvite, inviteService }) {
   const [startedTyping, setTyping] = useState(false);
 
   useEffect(() => {
-    Mixpanel.first_contact('submit request form');
+    Mixpanel.first_contact({
+      'first_contact': 'submit request form',
+      'first_contact_time': Date.now(),
+    });
   }, []); // Only fire once
 
   const handleInputChange = (e) => {

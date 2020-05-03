@@ -18,11 +18,8 @@ const Mixpanel = {
       if (env_check) mixpanel.people.set(props);
     },
   },
-  first_contact: (location) => {
-    if (env_check) mixpanel.register_once({
-      'first_contact': location,
-      'first_contact_time': Date.now(),
-    });
+  first_contact: (props) => {
+    if (env_check) mixpanel.register_once(props);
   }
 };
 
