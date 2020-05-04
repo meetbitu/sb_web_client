@@ -27,11 +27,10 @@ body {
 .App {
   text-align: center;
   /*width: 500px;*/
-  width: 50vw;
-  margin: auto;
+  margin: 20px;
   background-color: white;
   margin-top: 10%;
-  padding: 80px;
+  padding: 20px;
   /*box-shadow: 5px -2px #ecece4, -5px -5px #f85158, 6px 8px #c0d1d4, -14px 8px #f56846, -15px 5px #9a9bbc, 15px 10px #ccc36c, 20px 10px #f58985, -8px 2px #ecece4, 6px 20px #e99bbc, 30px 40px #f85158;*/
   box-shadow: 5px -2px #ecece4, -10px -10px #f85158, 12px 16px #c0d1d4, -28px 15px #f56846, -35px 6px #9a9bbc, 30px 20px #ccc36c, 50px -20px #f58985, -15px 2px #ecece4, -15px 40px #e99bbc, 60px 70px #f85158;
 }
@@ -40,27 +39,15 @@ body {
   box-shadow: 5px -2px #ecece4, -10px -10px #f85158, 12px 16px #c0d1d4, -28px 15px #f56846, -32px 10px #9a9bbc, 30px 20px #ccc36c, 50px -20px #f58985, -15px 2px #ecece4, -15px 40px #e99bbc, 60px 70px #f85158;
 }*/
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 input {
   font-size: 24px;
 }
 
-input[name=name] {
-  margin-left: 8px;
-}
-
+input[name=request],
+input[name=order],
+input[name=name],
 input[name=quantity] {
-  width: 50px;
+  width: 100%;
 }
 
 label {
@@ -91,4 +78,34 @@ button[type=submit]:hover {
 
 .messages {
   color: #abcdef;
+}
+
+@media (min-width: 360px) {
+  .App {
+    padding: 80px;
+    margin: 10% auto auto;
+    width: 50vw;
+  }
+
+  form {
+    width: 100%;
+    margin: auto;
+  }
+
+  input[name=quantity] {
+    width: 50px;
+  }
+
+  input[name=request] {
+    width: inherit;
+  }
+
+  input[name=order] {
+    width: 270px;
+  }
+
+  input[name=name] {
+    width: inherit;
+    margin-left: 8px;
+  }
 }
