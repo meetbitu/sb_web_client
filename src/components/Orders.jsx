@@ -6,17 +6,16 @@ function Orders({ orders }) {
   const [groupBy, setGroupBy] = useState('none');
 
   const displayOrders = () => {
+    let display = '';
     switch (groupBy) {
       case 'person':
         const personHeaders = orders.reduce((header, order) => {
           return header.includes(order.name) ? header : [...header, order.name];
         }, []);
 
-        return personHeaders.map(header => {
+        display = personHeaders.map(header => {
           const matchingOrders = orders.map(order => {
-            if (order.name === header) {
-              return <Order order={order} key={order._id}/>;
-            }
+            return (order.name === header) ? <Order order={order} key={order._id}/> : '';
           });
           return (
             <div key={header}>
@@ -32,11 +31,9 @@ function Orders({ orders }) {
           return header.includes(order.order) ? header : [...header, order.order];
         }, []);
 
-        return itemHeaders.map(header => {
+        display = itemHeaders.map(header => {
           const matchingOrders = orders.map(order => {
-            if (order.order === header) {
-              return <Order order={order} key={order._id}/>;
-            }
+            return (order.order === header) ? <Order order={order} key={order._id}/> : '';
           });
           return (
             <div key={header}>
@@ -48,10 +45,12 @@ function Orders({ orders }) {
         break;
 
       default:
-        return orders.map((order, index, array) => {
+        display =  orders.map((order, index, array) => {
           return <Order order={order} key={order._id}/>;
         });
     }
+
+    return display;
   }
 
   function groupByPerson(event) {
@@ -74,8 +73,6 @@ function Orders({ orders }) {
 
   return (
     <div className="orders">
-      {displayOrders()}
-
       <button
         onClick={groupByPerson}
       >
@@ -91,6 +88,8 @@ function Orders({ orders }) {
       >
         All items
       </button>
+
+      {displayOrders()}
     </div>
   );
 }
