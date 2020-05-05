@@ -41,9 +41,7 @@ function App() {
   }
 
   const [invite, setInvite] = useState(existingInvite);
-  const [existingOrders, setExistingOrders] = useState([]);
-  const [newOrders, setNewOrders] = useState([]);
-
+  const [orders, setOrders] = useState([]);
 
   /**
    * Invite service
@@ -79,7 +77,7 @@ function App() {
       orderService
         .find({ query: { inviteId: invite._id }})
         .then(data => {
-          setExistingOrders(data.data);
+          setOrders(data.data);
         });
     }
   }, [invite]);
@@ -88,7 +86,7 @@ function App() {
   useEffect(() => {
     orderService.on('created', order => {
       // Merge with orders and setOrders
-      setNewOrders(newOrders.concat(order));
+      setOrders(orders.concat(order));
     });
   });
 
@@ -111,12 +109,8 @@ function App() {
     }
   }
 
-  function renderNewOrders() {
-    return (newOrders.length) ? <Orders orders={newOrders} /> : '';
-  }
-
-  function renderExistingOrders() {
-    return (existingOrders.length) ? <Orders orders={existingOrders} /> : '';
+  function renderOrders() {
+    return (orders.length) ? <Orders orders={orders} /> : '';
   }
 
   return (
@@ -125,8 +119,7 @@ function App() {
         <h1>Make Sabay</h1>
       </header>
       { renderForms() }
-      { renderNewOrders() }
-      { renderExistingOrders() }
+      { renderOrders() }
     </div>
   );
 }
