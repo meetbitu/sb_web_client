@@ -30,9 +30,8 @@ body {
   margin: 20px;
   background-color: white;
   margin-top: 10%;
-  padding: 20px;
-  /*box-shadow: 5px -2px #ecece4, -5px -5px #f85158, 6px 8px #c0d1d4, -14px 8px #f56846, -15px 5px #9a9bbc, 15px 10px #ccc36c, 20px 10px #f58985, -8px 2px #ecece4, 6px 20px #e99bbc, 30px 40px #f85158;*/
-  box-shadow: 5px -2px #ecece4, -10px -10px #f85158, 12px 16px #c0d1d4, -28px 15px #f56846, -35px 6px #9a9bbc, 30px 20px #ccc36c, 50px -20px #f58985, -15px 2px #ecece4, -15px 40px #e99bbc, 60px 70px #f85158;
+  padding: 10px;
+  box-shadow: 5px -2px #ecece4, -5px -5px #f85158, 6px 8px #c0d1d4, -14px 8px #f56846, -15px 5px #9a9bbc, 15px 10px #ccc36c, 20px -10px #f58985, -8px 2px #ecece4, 6px 20px #e99bbc, 30px 40px #f85158;
 }
 
 /*.App:hover {
@@ -41,6 +40,14 @@ body {
 
 input {
   font-size: 24px;
+  border: none;
+  border-bottom: 1px solid #5dbcd2;
+  margin-bottom: 1px;
+}
+
+input:focus {
+  border-bottom: 2px solid #5dbcd2;
+  margin-bottom: 0;
 }
 
 input[name=request],
@@ -58,6 +65,7 @@ button[type=submit] {
   font-size: 16px;
   font-weight: bold;
   margin-top: 12px;
+  margin-bottom: 1px;
   display: inline-block;
   border: 1px solid #5dbcd2;
   background-color: white;
@@ -66,13 +74,19 @@ button[type=submit] {
 }
 
 button[type=submit]:hover {
-  background-color: #c0d1d4;
+  /*background-color: #c0d1d4;*/
+  margin-top: 11px;
+  margin-bottom: 0;
   cursor: pointer;
   color: black;
+  border: 2px solid #5dbcd2;
+}
+
+form header {
+  margin-bottom: 20px;
 }
 
 .copy-share-link {
-  margin-bottom: 20px;
   font-size: 12px;
 }
 
@@ -85,6 +99,7 @@ button[type=submit]:hover {
     padding: 80px;
     margin: 10% auto auto;
     width: 50vw;
+    box-shadow: 5px -2px #ecece4, -10px -10px #f85158, 12px 16px #c0d1d4, -28px 15px #f56846, -35px 6px #9a9bbc, 30px 20px #ccc36c, 50px -20px #f58985, -15px 2px #ecece4, -15px 40px #e99bbc, 60px 70px #f85158;
   }
 
   form {
@@ -101,7 +116,8 @@ button[type=submit]:hover {
   }
 
   input[name=order] {
-    width: 270px;
+    width: 265px;
+    margin-left: 5px;
   }
 
   input[name=name] {
