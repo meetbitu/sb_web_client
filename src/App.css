@@ -79,7 +79,7 @@ input,
 select {
   font-size: 24px;
   width: 90vw;
-  margin-bottom: 10px;
+  /*margin-bottom: 10px;*/
   border: 1px solid #ccc;
   padding: 3px;
   border-radius: 4px;
@@ -98,13 +98,10 @@ label {
 button[type=submit] {
   flex-shrink: 0;
   font-size: 20px;
-  /*background: none;*/
   background-color: #efc10b;
   border: none;
   font-weight: bold;
-  padding: 15px 0 40px 0;
-  margin-top: 20px;
-  display: inline-block;
+  /*padding: 15px 0 40px 0;*/
   color: #4b1d09;
   width: 100vw;
   max-width: 400px;
@@ -112,14 +109,6 @@ button[type=submit] {
 
 button[type=submit]:hover {
   cursor: pointer;
-}
-
-form {
-  margin: 0 20px;
-}
-
-form header {
-  margin-bottom: 20px;
 }
 
 .copy-share-link {
