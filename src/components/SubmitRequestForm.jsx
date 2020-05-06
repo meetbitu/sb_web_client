@@ -1,15 +1,15 @@
 import React, {
-  useState,
+  // useState,
   useEffect,
 } from 'react';
 import Mixpanel from '../imports/Mixpanel';
 
 function SubmistRequestForm({ setInvite, inviteService }) {
-  const initialState = {
-      request: "",
-  };
-  const [input, setInput] = useState(initialState);
-  const [startedTyping, setTyping] = useState(false);
+  // const initialState = {
+  //     request: "",
+  // };
+  // const [input, setInput] = useState(initialState);
+  // const [startedTyping, setTyping] = useState(false);
 
   useEffect(() => {
     Mixpanel.first_contact({
@@ -18,18 +18,18 @@ function SubmistRequestForm({ setInvite, inviteService }) {
     });
   }, []); // Only fire once
 
-  const handleInputChange = (e) => {
-    if (!startedTyping) {
-      setTyping(true);
+  // const handleInputChange = (e) => {
+  //   if (!startedTyping) {
+  //     setTyping(true);
 
-      Mixpanel.track('Started typing in the initial request form');
-    }
+  //     Mixpanel.track('Started typing in the initial request form');
+  //   }
 
-    setInput({
-      ...input,
-      [e.currentTarget.name]: e.currentTarget.value
-    });
-  }
+  //   setInput({
+  //     ...input,
+  //     [e.currentTarget.name]: e.currentTarget.value
+  //   });
+  // }
 
   function submitRequest(event) {
     event.preventDefault();

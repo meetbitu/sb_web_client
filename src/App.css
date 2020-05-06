@@ -50,6 +50,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  max-width: 400px;
+  margin: auto;
 }
 
 .App-logo {
@@ -62,10 +64,12 @@ body {
   align-items: center;
   justify-content: center;
   flex-grow: 1;
+  padding-top: 20px;
 }
 
 form {
   text-align: center;
+  max-width: 400px;
 }
 
 input,
@@ -77,6 +81,7 @@ select {
   padding: 3px;
   border-radius: 4px;
   background-color: white;
+  max-width: 400px;
 }
 
 input {
@@ -98,6 +103,7 @@ button[type=submit] {
   display: inline-block;
   color: #4b1d09;
   width: 100vw;
+  max-width: 400px;
 }
 
 button[type=submit]:hover {
@@ -115,35 +121,3 @@ form header {
 .copy-share-link {
   font-size: 12px;
 }
-
-/*
-@media (min-width: 360px) {
-  .App {
-    padding: 80px;
-    margin: 10% auto auto;
-    width: 50vw;
-  }
-
-  form {
-    width: 100%;
-    margin: auto;
-  }
-
-  input[name=quantity] {
-    width: 50px;
-  }
-
-  input[name=request] {
-    width: inherit;
-  }
-
-  input[name=order] {
-    width: 265px;
-    margin-left: 5px;
-  }
-
-  input[name=name] {
-    width: inherit;
-    margin-left: 8px;
-  }
-}*/
