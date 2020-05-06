@@ -12,6 +12,7 @@ import Orders from './components/Orders.jsx';
 
 // Styles
 import './App.css';
+import coco from './coco.png';
 
 /**
  * Feathers websocket connection
@@ -93,12 +94,10 @@ function App() {
   function renderForms() {
     if (invite) {
       return (
-        <div className="order-container">
-          <OrderForm
-            invite={invite}
-            orderService={orderService}
-          />
-        </div>
+        <OrderForm
+          invite={invite}
+          orderService={orderService}
+        />
       );
     }
     else {
@@ -115,7 +114,8 @@ function App() {
 
   return (
     <div className="App">
-      <header>
+      <header className="App-header">
+        <img src={coco} className="App-logo" alt="logo" />
         <h1>Make Sabay</h1>
       </header>
       { renderForms() }

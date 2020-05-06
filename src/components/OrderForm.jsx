@@ -36,7 +36,7 @@ const OrderForm = ({ invite, orderService }) => {
       order: input.order,
       inviteId: invite._id,
     }).then((data) => {
-      setMessage(`${input.name} ordered ${input.quantity} ${input.order}`);
+      setMessage('Order submitted');
       setInput(initialState);
     });
 
@@ -65,25 +65,22 @@ const OrderForm = ({ invite, orderService }) => {
         name="quantity"
         value={input.quantity}
         onChange={handleInputChange}
-        placeholder="3"
+        placeholder="Quantity"
       />
       <input
         type="text"
         name="order"
         value={input.order}
         onChange={handleInputChange}
-        placeholder="Chickenjoy"
+        placeholder="Order with spice level"
       />
-      <label>
-        for
-        <input
-          type="text"
-          name="name"
-          value={input.name}
-          onChange={handleInputChange}
-          placeholder="Name"
-        />
-      </label>
+      <input
+        type="text"
+        name="name"
+        value={input.name}
+        onChange={handleInputChange}
+        placeholder="Name"
+      />
       <div className="form-actions">
         <button
           type="submit"

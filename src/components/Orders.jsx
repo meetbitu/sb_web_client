@@ -3,7 +3,7 @@ import Order from './Order.jsx';
 // import OrderCost from './OrderCost.jsx';
 
 function Orders({ orders }) {
-  const [groupBy, setGroupBy] = useState('none');
+  const [groupBy, setGroupBy] = useState('person');
 
   const displayOrders = () => {
     let display = '';

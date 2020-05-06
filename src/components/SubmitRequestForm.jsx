@@ -36,7 +36,8 @@ function SubmistRequestForm({ setInvite, inviteService }) {
 
     // Use the invites service from the server
     inviteService.create({
-      text: event.target.request.value
+      text: "Let's order CoCo!",
+      // text: `Order CoCo with ${event.target.request.value}`,
     }).then((data) => {
       setInvite(data);
 
@@ -52,13 +53,13 @@ function SubmistRequestForm({ setInvite, inviteService }) {
       className="submit-request"
       onSubmit={submitRequest}
     >
-      <input
+{/*      <input
         type="text"
         name="request"
         value={input.request}
         onChange={handleInputChange}
-        placeholder="Jolibee tonight 🍗"
-      />
+        placeholder="Name 🍛"
+      />*/}
       <div className="form-actions">
         <button
           type="submit"
