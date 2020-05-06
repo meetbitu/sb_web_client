@@ -5,12 +5,16 @@ import React, {
 } from 'react';
 
 const OrderForm = ({ invite, orderService }) => {
-  const initialState = {
-      quantity: "",
-      order: "",
+  const initialInput = {
       name: "",
+      order: "",
+      spice: "",
   };
-  const [input, setInput] = useState(initialState);
+  const resetInput = {
+      order: "",
+      spice: "",
+  };
+  const [input, setInput] = useState(initialInput);
   const [message, setMessage] = useState();
 
   useEffect(() => {
@@ -32,12 +36,12 @@ const OrderForm = ({ invite, orderService }) => {
     // Use the orders service from the server
     orderService.create({
       name: input.name,
-      quantity: input.quantity,
       order: input.order,
+      spice: input.spice,
       inviteId: invite._id,
     }).then((data) => {
       setMessage('Order submitted');
-      setInput(initialState);
+      setInput(resetInput);
     });
 
   }
@@ -61,26 +65,38 @@ const OrderForm = ({ invite, orderService }) => {
         </label>
       </header>
       <input
-        type="number"
-        name="quantity"
-        value={input.quantity}
-        onChange={handleInputChange}
-        placeholder="Quantity"
-      />
-      <input
-        type="text"
-        name="order"
-        value={input.order}
-        onChange={handleInputChange}
-        placeholder="Order with spice level"
-      />
-      <input
         type="text"
         name="name"
         value={input.name}
         onChange={handleInputChange}
         placeholder="Name"
       />
+      <select
+        name="order"
+        onChange={handleInputChange}
+        value={input.order}
+      >
+        <option value="">Select dish</option>
+        <option value="Chicken Katsu">Chicken Katsu</option>
+        <option value="Port Katsu">Pork Katsu</option>
+      </select>
+      <select
+        name="spice"
+        onChange={handleInputChange}
+        value={input.spice}
+      >
+        <option value="">Select spice level</option>
+        <option value="Level 1">Level 1</option>
+        <option value="Level 2">Level 2</option>
+        <option value="Level 3">Level 3</option>
+        <option value="Level 4">Level 4</option>
+        <option value="Level 5">Level 5</option>
+        <option value="Level 6">Level 6</option>
+        <option value="Level 7">Level 7</option>
+        <option value="Level 8">Level 8</option>
+        <option value="Level 9">Level 9</option>
+        <option value="Level 10">Level 10</option>
+      </select>
       <div className="form-actions">
         <button
           type="submit"

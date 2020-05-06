@@ -32,7 +32,7 @@ off-white: #f4f3f3;
 body {
   /*background-color: #f85158;*/
   background-color: #f4f3f3;
-  height: 100%;
+  height: 100vh;
   color: #4b1d09;
 }
 
@@ -46,6 +46,7 @@ body {
   padding: 10px;*/
   min-height: 100vh;
   display: flex;
+  min-width: 0;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -67,16 +68,19 @@ form {
   text-align: center;
 }
 
-input {
+input,
+select {
   font-size: 24px;
-  border: none;
+  width: 90vw;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  padding: 3px;
+  border-radius: 4px;
+  background-color: white;
 }
 
-input[name=request],
-input[name=order],
-input[name=name],
-input[name=quantity] {
-  margin-bottom: 5px;
+input {
+  width: 87vw;
 }
 
 label {
@@ -85,10 +89,12 @@ label {
 
 button[type=submit] {
   font-size: 20px;
-  background: none;
+  /*background: none;*/
+  background-color: #efc10b;
   border: none;
   font-weight: bold;
   padding: 15px 0;
+  margin-top: 20px;
   display: inline-block;
   color: #4b1d09;
   width: 100vw;
@@ -110,9 +116,6 @@ form header {
   font-size: 12px;
 }
 
-.messages {
-  color: #abcdef;
-}
 /*
 @media (min-width: 360px) {
   .App {

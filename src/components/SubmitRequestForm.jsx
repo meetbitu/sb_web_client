@@ -36,7 +36,7 @@ function SubmistRequestForm({ setInvite, inviteService }) {
 
     // Use the invites service from the server
     inviteService.create({
-      text: "Let's order CoCo!",
+      text: "Let's order CoCo together",
       // text: `Order CoCo with ${event.target.request.value}`,
     }).then((data) => {
       setInvite(data);
