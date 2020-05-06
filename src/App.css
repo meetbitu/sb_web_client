@@ -64,6 +64,9 @@ body {
   align-items: center;
   justify-content: center;
   flex-grow: 1;
+}
+
+.App-logo {
   padding-top: 20px;
 }
 
