@@ -96,12 +96,13 @@ label {
 }
 
 button[type=submit] {
+  flex-shrink: 0;
   font-size: 20px;
   /*background: none;*/
   background-color: #efc10b;
   border: none;
   font-weight: bold;
-  padding: 15px 0;
+  padding: 15px 0 40px 0;
   margin-top: 20px;
   display: inline-block;
   color: #4b1d09;
