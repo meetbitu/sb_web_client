@@ -40,7 +40,7 @@ function Orders({ orders, orderService, ordersUpdateCheck }) {
         for (let i = Object.keys(regroupedOrders).length - 1; i >= 0; i--) {
           const header = Object.keys(regroupedOrders)[i];
           ordersFormattedForState.push({
-            header: `${header}: ₱${totalByName[header]}`,
+            header: `${header}: ₱${parseFloat(totalByName[header]).toFixed(2)}`,
             orders: regroupedOrders[header],
             displayCost: false,
           });

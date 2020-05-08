@@ -4,7 +4,10 @@ import React, {
 } from 'react';
 
 function Order({ order, displayCost, orderService }) {
-  const initialCost = order.cost ? order.cost : '';
+  if (order.cost === 'undefined') {
+    console.log(order);
+  }
+  const initialCost = !isNaN(order.cost) ? order.cost : 0;
   const initialInput = {
     cost: initialCost,
   };
