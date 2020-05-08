@@ -6,16 +6,19 @@ import React, {
 
 const OrderForm = ({ invite, orderService }) => {
   const initialInput = {
-      name: "",
-      order: "",
-      spice: "",
-  };
-  const resetInput = {
-      order: "",
-      spice: "",
+    name: "",
+    order: "",
+    spice: "",
   };
   const [input, setInput] = useState(initialInput);
   const [message, setMessage] = useState();
+
+  // Keep the name assuming the same person is ordering again
+  const resetInput = {
+    name: input.name,
+    order: "",
+    spice: "",
+  };
 
   useEffect(() => {
     Mixpanel.first_contact({
@@ -59,7 +62,7 @@ const OrderForm = ({ invite, orderService }) => {
             type="text"
             name="share-link"
             className="copy-share-link"
-            value={encodeURI(`${window.location}?invite=${invite._id}&text=${invite.text}`)}
+            value={encodeURI(`${window.location.protocol}${window.location.host}?invite=${invite._id}&text=${invite.text}`)}
             onChange={() => {}}
           />
         </label>

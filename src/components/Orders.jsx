@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Order from './Order.jsx';
 // import OrderCost from './OrderCost.jsx';
 
-function Orders({ orders }) {
+function Orders({ orders, orderService }) {
   const [groupBy, setGroupBy] = useState('person');
 
   const displayOrders = () => {
@@ -14,12 +14,18 @@ function Orders({ orders }) {
         }, []);
 
         display = personHeaders.map(header => {
+          let total = 0;
           const matchingOrders = orders.map(order => {
+            if (order.cost) {
+              total += parseFloat(order.cost, 10);
+            }
             return (order.name === header) ? <Order order={order} key={order._id}/> : '';
           });
+
+          const renderTotal = parseFloat(total).toFixed(2);
           return (
             <div key={header}>
-              <h3>{header}</h3>
+              <h3>{header}: ₱{renderTotal}</h3>
               {matchingOrders}
             </div>
           );
@@ -28,12 +34,17 @@ function Orders({ orders }) {
 
       case 'item':
         const itemHeaders = orders.reduce((header, order) => {
-          return header.includes(order.order) ? header : [...header, order.order];
+          return header.includes(order.order) ? header : [...header, `${order.order} - ${order.spice}`];
         }, []);
 
         display = itemHeaders.map(header => {
           const matchingOrders = orders.map(order => {
-            return (order.order === header) ? <Order order={order} key={order._id}/> : '';
+            return (`${order.order} - ${order.spice}` === header) ?
+              <Order
+                order={order}
+                key={order._id}
+              /> :
+              '';
           });
           return (
             <div key={header}>
@@ -46,7 +57,14 @@ function Orders({ orders }) {
 
       default:
         display =  orders.map((order, index, array) => {
-          return <Order order={order} key={order._id}/>;
+          return (
+            <Order
+              order={order}
+              key={order._id}
+              orderService={orderService}
+              displayCost
+            />
+          );
         });
     }
 

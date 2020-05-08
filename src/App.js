@@ -91,6 +91,17 @@ function App() {
     });
   });
 
+  useEffect(() => {
+    orderService.on('patched', updatedOrder => {
+      const matchingIndex = orders.findIndex(order => order._id === updatedOrder._id);
+      if (matchingIndex >= 0) {
+        const updatedOrders = orders;
+        updatedOrders[matchingIndex] = updatedOrder;
+        setOrders(updatedOrders);
+      }
+    });
+  });
+
   function renderForms() {
     if (invite) {
       return (
@@ -108,9 +119,6 @@ function App() {
     }
   }
 
-  function renderOrders() {
-    return (orders.length) ? <Orders orders={orders} /> : '';
-  }
 
   return (
     <div className="App">
@@ -119,7 +127,7 @@ function App() {
         <h1>Make Sabay</h1>
       </header>
       { renderForms() }
-      { renderOrders() }
+      <Orders orders={orders} orderService={orderService} />
     </div>
   );
 }
