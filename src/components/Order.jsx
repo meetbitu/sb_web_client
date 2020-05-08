@@ -10,12 +10,14 @@ function Order({ order, displayCost, orderService }) {
   };
   const [input, setInput] = useState(initialInput);
 
-  const handleInputChange = (e) => {
+  const updateOrderRecord = (e) => {
     // If we add more fields this needs to be updated
     orderService.patch(order._id, {
       cost: parseFloat(e.currentTarget.value).toFixed(2),
     });
+  }
 
+  const handleInputChange = (e) => {
     setInput({
       ...input,
       [e.currentTarget.name]: e.currentTarget.value
@@ -32,6 +34,8 @@ function Order({ order, displayCost, orderService }) {
             name="cost"
             value={input.cost}
             onChange={handleInputChange}
+            onBlur={updateOrderRecord}
+            onSubmit={e => e.preventDefault()}
             placeholder="Cost"
           />
         </form>

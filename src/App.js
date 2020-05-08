@@ -43,6 +43,7 @@ function App() {
 
   const [invite, setInvite] = useState(existingInvite);
   const [orders, setOrders] = useState([]);
+  const [ordersUpdateCheck, setOrdersUpdateCheck] = useState('');
 
   /**
    * Invite service
@@ -88,6 +89,7 @@ function App() {
     orderService.on('created', order => {
       // Merge with orders and setOrders
       setOrders(orders.concat(order));
+      setOrdersUpdateCheck(JSON.stringify(orders.concat(order)));
     });
   });
 
@@ -98,6 +100,7 @@ function App() {
         const updatedOrders = orders;
         updatedOrders[matchingIndex] = updatedOrder;
         setOrders(updatedOrders);
+        setOrdersUpdateCheck(JSON.stringify(updatedOrders));
       }
     });
   });
@@ -127,7 +130,11 @@ function App() {
         <h1>Make Sabay</h1>
       </header>
       { renderForms() }
-      <Orders orders={orders} orderService={orderService} />
+      <Orders
+        orders={orders}
+        orderService={orderService}
+        ordersUpdateCheck={ordersUpdateCheck}
+      />
     </div>
   );
 }

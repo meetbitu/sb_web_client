@@ -1,92 +1,123 @@
-import React, { useState } from 'react';
+import React, {
+  useState,
+  useEffect,
+  useCallback,
+} from 'react';
 import Order from './Order.jsx';
 // import OrderCost from './OrderCost.jsx';
 
-function Orders({ orders, orderService }) {
-  const [groupBy, setGroupBy] = useState('person');
+function Orders({ orders, orderService, ordersUpdateCheck }) {
+  const [displayGroup, setDisplayGroup] = useState('person');
+  const [groupedOrders, setGroupedOrders] = useState([{
+    header: '',
+    orders: [],
+    displayCost: false,
+  }]);
 
-  const displayOrders = () => {
-    let display = '';
-    switch (groupBy) {
+  const groupOrders = useCallback(() => {
+    const regroupedOrders = {};
+    const ordersFormattedForState = [];
+    const totalByName = [];
+    switch (displayGroup) {
       case 'person':
-        const personHeaders = orders.reduce((header, order) => {
-          return header.includes(order.name) ? header : [...header, order.name];
-        }, []);
+        for (let o = orders.length - 1; o >= 0; o--) {
+          if (typeof regroupedOrders[orders[o].name] === 'undefined') {
+            regroupedOrders[orders[o].name] = [];
+          }
 
-        display = personHeaders.map(header => {
-          let total = 0;
-          const matchingOrders = orders.map(order => {
-            if (order.cost) {
-              total += parseFloat(order.cost, 10);
-            }
-            return (order.name === header) ? <Order order={order} key={order._id}/> : '';
+          // regroupedOrders[orders[o].name].push(orders[o]);
+          regroupedOrders[orders[o].name].push(<Order orderService={orderService} order={orders[o]} key={orders[o]._id} />);
+
+          if (typeof totalByName[orders[o].name] === 'undefined') {
+            totalByName[orders[o].name] = 0;
+          }
+
+          if (orders[o].cost) {
+            totalByName[orders[o].name] += parseFloat(orders[o].cost, 10);
+          }
+        }
+
+        for (let i = Object.keys(regroupedOrders).length - 1; i >= 0; i--) {
+          const header = Object.keys(regroupedOrders)[i];
+          ordersFormattedForState.push({
+            header: `${header}: ₱${totalByName[header]}`,
+            orders: regroupedOrders[header],
+            displayCost: false,
           });
-
-          const renderTotal = parseFloat(total).toFixed(2);
-          return (
-            <div key={header}>
-              <h3>{header}: ₱{renderTotal}</h3>
-              {matchingOrders}
-            </div>
-          );
-        });
+        }
         break;
 
       case 'item':
-        const itemHeaders = orders.reduce((header, order) => {
-          return header.includes(order.order) ? header : [...header, `${order.order} - ${order.spice}`];
-        }, []);
+        for (let o = orders.length - 1; o >= 0; o--) {
+          if (typeof regroupedOrders[`${orders[o].order} - ${orders[o].spice}`] === 'undefined') {
+            regroupedOrders[`${orders[o].order} - ${orders[o].spice}`] = [];
+          }
 
-        display = itemHeaders.map(header => {
-          const matchingOrders = orders.map(order => {
-            return (`${order.order} - ${order.spice}` === header) ?
-              <Order
-                order={order}
-                key={order._id}
-              /> :
-              '';
+          // regroupedOrders[`${orders[o].order} - ${orders[o].spice}`].push(orders[o]);
+          regroupedOrders[`${orders[o].order} - ${orders[o].spice}`].push(<Order orderService={orderService} order={orders[o]} key={orders[o]._id} />);
+        }
+
+        for (let i = Object.keys(regroupedOrders).length - 1; i >= 0; i--) {
+          const header = Object.keys(regroupedOrders)[i];
+          ordersFormattedForState.push({
+            header: header,
+            orders: regroupedOrders[header],
+            displayCost: false,
           });
-          return (
-            <div key={header}>
-              <h3>{header}</h3>
-              {matchingOrders}
-            </div>
-          );
-        });
+        }
         break;
 
       default:
-        display =  orders.map((order, index, array) => {
-          return (
-            <Order
-              order={order}
-              key={order._id}
-              orderService={orderService}
-              displayCost
-            />
-          );
-        });
+        for (let o = orders.length - 1; o >= 0; o--) {
+          if (typeof regroupedOrders['Enter final cost'] === 'undefined') {
+            regroupedOrders['Enter final cost'] = [];
+          }
+
+          regroupedOrders['Enter final cost'].push(<Order orderService={orderService} order={orders[o]} key={orders[o]._id} displayCost />);
+        }
+
+        for (let i = Object.keys(regroupedOrders).length - 1; i >= 0; i--) {
+          const header = Object.keys(regroupedOrders)[i];
+          ordersFormattedForState.push({
+            header: header,
+            orders: regroupedOrders[header],
+            displayCost: false,
+          });
+        }
+        break;
+
     }
 
-    return display;
-  }
+    return ordersFormattedForState;
+  }, [orders, displayGroup, orderService]);
+
+  // setGroupedOrders(groupOrders('person'));
+
+  useEffect(() => {
+    console.log('orders useeffect set group');
+    setGroupedOrders(
+      groupOrders()
+      // groupOrders(),
+      // groupOrders(),
+    );
+  }, [groupOrders, ordersUpdateCheck]);
 
   function groupByPerson(event) {
     event.preventDefault();
 
-    setGroupBy('person');
+    setDisplayGroup('person');
   }
 
   function groupByDish(event) {
     event.preventDefault();
 
-    setGroupBy('item');
+    setDisplayGroup('item');
   }
 
   function noGrouping(event) {
     event.preventDefault();
 
-    setGroupBy('none');
+    setDisplayGroup('none');
   }
 
   return (
@@ -106,8 +137,14 @@ function Orders({ orders, orderService }) {
       >
         All items
       </button>
-
-      {displayOrders()}
+      {groupedOrders.map(group => {
+        return (
+          <div className="group" key={group.header}>
+            <h2>{group.header}</h2>
+            {group.orders.map(order => order)}
+          </div>
+        )
+      })}
     </div>
   );
 }
