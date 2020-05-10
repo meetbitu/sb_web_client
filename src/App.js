@@ -122,6 +122,15 @@ function App() {
     }
   }
 
+  function renderOrders() {
+    return invite ?
+      (<Orders
+        orders={orders}
+        orderService={orderService}
+        ordersUpdateCheck={ordersUpdateCheck}
+      />) :
+      '';
+  }
 
   return (
     <div className="App">
@@ -130,11 +139,7 @@ function App() {
         <h1>Make Sabay</h1>
       </header>
       { renderForms() }
-      <Orders
-        orders={orders}
-        orderService={orderService}
-        ordersUpdateCheck={ordersUpdateCheck}
-      />
+      { renderOrders() }
     </div>
   );
 }
