@@ -65,8 +65,11 @@ const OrderForm = ({ invite, orderService }) => {
     <div className="order-form">
       <header>
         <h2>{invite.text}</h2>
-        <CopyToClipboard text={encodeURI(`${window.location.protocol}${window.location.host}?invite=${invite._id}&text=${invite.text}`)}
-          onCopy={() => setCopiedText('Invite link has been copied to your clipboard')}>
+        <CopyToClipboard
+          text={encodeURI(`${window.location.protocol}//${window.location.host}?invite=${invite._id}&text=${invite.text}`)}
+          onCopy={() => setCopiedText('Invite link has been copied to your clipboard')}
+          onClick={() => Mixpanel.track('Clicked copy invite link')}
+        >
           <button>{copiedText}</button>
         </CopyToClipboard>
         <div
