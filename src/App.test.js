@@ -4,6 +4,6 @@ import App from './App';
 
 test('renders title', () => {
   const { getByText } = render(<App />);
-  const header = getByText(/Make Sabay/i);
+  const header = getByText(/Make Sabay/);
   expect(header).toBeInTheDocument();
 });
