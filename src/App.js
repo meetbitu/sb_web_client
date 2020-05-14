@@ -147,7 +147,7 @@ function App() {
   }
 
   function renderOrders() {
-    return invite ?
+    return invite && orders.length ?
       (<Orders
         orders={orders}
         orderService={orderService}
@@ -160,8 +160,12 @@ function App() {
     return (inviteTypeData && inviteTypeData.graphic) ? inviteTypeData.graphic : '';
   }
 
+  const appClasses = (inviteTypeData && inviteTypeData.type) ?
+    `App ${inviteTypeData.type}` :
+    "App";
+
   return (
-    <div className="App">
+    <div className={appClasses}>
       <header className="App-header">
         {renderGraphic()}
         <h1>Make Sabay</h1>
