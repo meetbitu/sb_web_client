@@ -14,7 +14,6 @@ import InviteTypeChooser from './components/InviteTypeChooser.jsx';
 
 // Styles
 import './App.css';
-import coco from './coco.png';
 
 /**
  * Feathers websocket connection
