@@ -80,7 +80,14 @@ function App() {
     if (invite && invite._id) {
       // @TOOD: Connect to an invite specific room
       orderService
-        .find({ query: { inviteId: invite._id }})
+        .find({
+          query: {
+            inviteId: invite._id,
+            $sort: {
+              timestamp: -1
+            }
+          }
+        })
         .then(data => {
           setOrders(data.data);
         });

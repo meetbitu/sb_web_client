@@ -48,6 +48,7 @@ const OrderForm = ({ invite, orderService }) => {
       order: input.order,
       spice: input.spice,
       inviteId: invite._id,
+      timestamp: Date.now(),
     }).then((data) => {
       setMessage('Order submitted');
       setInput(resetInput);

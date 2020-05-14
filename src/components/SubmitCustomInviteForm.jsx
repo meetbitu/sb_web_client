@@ -52,6 +52,7 @@ function SubmitCustomInviteForm({ setInvite, inviteService }) {
     // Use the invites service from the server
     inviteService.create({
       text: `Let's order ${event.target.request.value} together`,
+      timestamp: Date.now(),
     }).then((data) => {
       setInvite(data);
 
