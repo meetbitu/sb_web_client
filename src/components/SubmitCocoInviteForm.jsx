@@ -4,7 +4,7 @@ import React, {
 } from 'react';
 import Mixpanel from '../imports/Mixpanel';
 
-function SubmistRequestForm({ setInvite, inviteService }) {
+function SubmitCocoInviteForm({ setInvite, inviteService }) {
   // const initialState = {
   //     request: "",
   // };
@@ -72,4 +72,4 @@ function SubmistRequestForm({ setInvite, inviteService }) {
   );
 }
 
-export default SubmistRequestForm;
+export default SubmitCocoInviteForm;

@@ -111,7 +111,7 @@ button[type=submit]:hover {
   cursor: pointer;
 }
 
-.invite-type-choice.custom button[type=submit] {
+.custom button[type=submit] {
   background-color: #f85158;
   color: white;
 }

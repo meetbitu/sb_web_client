@@ -6,7 +6,8 @@ import React, {
 } from 'react';
 
 // Components
-import SubmitRequestForm from './components/SubmitRequestForm.jsx';
+import SubmitCocoInviteForm from './components/SubmitCocoInviteForm.jsx';
+import SubmitCustomInviteForm from './components/SubmitCustomInviteForm.jsx';
 import OrderForm from './components/OrderForm.jsx';
 import Orders from './components/Orders.jsx';
 import InviteTypeChooser from './components/InviteTypeChooser.jsx';
@@ -118,12 +119,23 @@ function App() {
       );
     }
     else if (inviteTypeData) {
-      render = (
-        <SubmitRequestForm
-          setInvite={setInvite}
-          inviteService={inviteService}
-        />
-      );
+      if (inviteTypeData.type === 'coco') {
+        render = (
+          <SubmitCocoInviteForm
+            setInvite={setInvite}
+            inviteService={inviteService}
+          />
+        );
+      }
+      else if (inviteTypeData.type === 'custom') {
+        render = (
+          <SubmitCustomInviteForm
+            setInvite={setInvite}
+            inviteService={inviteService}
+          />
+        );
+      }
+
     }
     else {
       render = (
