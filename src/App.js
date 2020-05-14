@@ -9,6 +9,7 @@ import React, {
 import SubmitRequestForm from './components/SubmitRequestForm.jsx';
 import OrderForm from './components/OrderForm.jsx';
 import Orders from './components/Orders.jsx';
+import InviteTypeChooser from './components/InviteTypeChooser.jsx';
 
 // Styles
 import './App.css';
@@ -44,6 +45,7 @@ function App() {
   const [invite, setInvite] = useState(existingInvite);
   const [orders, setOrders] = useState([]);
   const [ordersUpdateCheck, setOrdersUpdateCheck] = useState('');
+  const [inviteTypeData, setInviteTypeData] = useState(null);
 
   /**
    * Invite service
@@ -106,20 +108,30 @@ function App() {
   });
 
   function renderForms() {
+    let render = '';
     if (invite) {
-      return (
+      render = (
         <OrderForm
           invite={invite}
           orderService={orderService}
         />
       );
     }
-    else {
-      return (<SubmitRequestForm
-        setInvite={setInvite}
-        inviteService={inviteService}
-      />);
+    else if (inviteTypeData) {
+      render = (
+        <SubmitRequestForm
+          setInvite={setInvite}
+          inviteService={inviteService}
+        />
+      );
     }
+    else {
+      render = (
+        <InviteTypeChooser setInviteTypeData={setInviteTypeData} />
+      );
+    }
+
+    return render;
   }
 
   function renderOrders() {
@@ -132,10 +144,14 @@ function App() {
       '';
   }
 
+  function renderGraphic() {
+    return (inviteTypeData && inviteTypeData.graphic) ? inviteTypeData.graphic : '';
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={coco} className="App-logo" alt="logo" />
+        {renderGraphic()}
         <h1>Make Sabay</h1>
       </header>
       { renderForms() }

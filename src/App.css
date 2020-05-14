@@ -55,7 +55,7 @@ body {
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 20vmin;
 }
 
 .App-header {
@@ -98,7 +98,6 @@ label {
 button[type=submit] {
   flex-shrink: 0;
   font-size: 20px;
-  /*background: none;*/
   background-color: #efc10b;
   border: none;
   font-weight: bold;
@@ -112,8 +111,24 @@ button[type=submit]:hover {
   cursor: pointer;
 }
 
+.invite-type-choice.custom button[type=submit] {
+  background-color: #f85158;
+  color: white;
+}
+
 form {
   margin: 0 20px;
+}
+
+.invite-type-chooser {
+  text-align: center;
+}
+
+.invite-type-choice {
+  background-color: white;
+  border-radius: 30px;
+  padding: 15px 0;
+  margin-bottom: 25px;
 }
 
 .order-form header {
@@ -131,6 +146,10 @@ form {
 
 .invite-copy-emoji {
   font-size: 34px;
+}
+
+.invite-type-emoji {
+  font-size: 134px;
 }
 
 .orders {
