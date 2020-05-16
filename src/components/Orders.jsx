@@ -137,6 +137,7 @@ function Orders({ orders, orderService, ordersUpdateCheck }) {
       >
         All items
       </button>
+      <p>This is just the subtotal so far. Tax and delivery will be added when we know the amounts.</p>
       {groupedOrders.map(group => {
         return (
           <div className="group" key={group.header}>
