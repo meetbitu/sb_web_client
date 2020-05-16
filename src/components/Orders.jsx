@@ -6,13 +6,47 @@ import React, {
 import Order from './Order.jsx';
 // import OrderCost from './OrderCost.jsx';
 
-function Orders({ orders, orderService, ordersUpdateCheck }) {
+function Orders({ orders, orderService, inviteService, ordersUpdateCheck, invite }) {
   const [displayGroup, setDisplayGroup] = useState('person');
   const [groupedOrders, setGroupedOrders] = useState([{
     header: '',
     orders: [],
     displayCost: false,
   }]);
+
+  const initialCost = !isNaN(invite.splitCost) ? invite.splitCost : 0;
+  const [splitCost, setSplitCost] = useState(initialCost);
+
+  const updateInviteRecord = (e) => {
+    // If we add more fields this needs to be updated
+    inviteService.patch(invite._id, {
+      splitCost: parseFloat(e.currentTarget.value).toFixed(2),
+    });
+  }
+
+  const handleSplitCostChange = (e) => {
+    setSplitCost(e.currentTarget.value);
+  }
+
+  // setGroupedOrders(groupOrders('person'));
+
+  function groupByPerson(event) {
+    event.preventDefault();
+
+    setDisplayGroup('person');
+  }
+
+  function groupByDish(event) {
+    event.preventDefault();
+
+    setDisplayGroup('item');
+  }
+
+  function noGrouping(event) {
+    event.preventDefault();
+
+    setDisplayGroup('none');
+  }
 
   const groupOrders = useCallback(() => {
     const regroupedOrders = {};
@@ -39,6 +73,10 @@ function Orders({ orders, orderService, ordersUpdateCheck }) {
 
         for (let i = Object.keys(regroupedOrders).length - 1; i >= 0; i--) {
           const header = Object.keys(regroupedOrders)[i];
+          // Add portion of fixed costs
+          if (!isNaN(invite.splitCost)) {
+            totalByName[header] += (invite.splitCost / Object.keys(regroupedOrders).length);
+          }
           ordersFormattedForState.push({
             header: `${header}: ₱${parseFloat(totalByName[header]).toFixed(2)}`,
             orders: regroupedOrders[header],
@@ -89,12 +127,9 @@ function Orders({ orders, orderService, ordersUpdateCheck }) {
     }
 
     return ordersFormattedForState;
-  }, [orders, displayGroup, orderService]);
-
-  // setGroupedOrders(groupOrders('person'));
+  }, [orders, displayGroup, orderService, invite.splitCost]);
 
   useEffect(() => {
-    console.log('orders useeffect set group');
     setGroupedOrders(
       groupOrders()
       // groupOrders(),
@@ -102,23 +137,25 @@ function Orders({ orders, orderService, ordersUpdateCheck }) {
     );
   }, [groupOrders, ordersUpdateCheck]);
 
-  function groupByPerson(event) {
-    event.preventDefault();
+  // useEffect(() => {
+  //   const field = (
+  //     <label>
+  //     Split costs:
+  //     <input
+  //       type="number"
+  //       step="0.01"
+  //       name="split-cost"
+  //       value={splitCost}
+  //       onChange={handleSplitCostChange}
+  //       onBlur={updateInviteRecord}
+  //       placeholder="Split Cost"
+  //      />
+  //     </label>
+  //   );
+  //   setSplitCostField(field);
+  // }, [displayGroup, splitCost, updateInviteRecord]);
 
-    setDisplayGroup('person');
-  }
-
-  function groupByDish(event) {
-    event.preventDefault();
-
-    setDisplayGroup('item');
-  }
-
-  function noGrouping(event) {
-    event.preventDefault();
-
-    setDisplayGroup('none');
-  }
+  const displayOnPersonTabOnlyClass = (displayGroup === 'person') ? '' : 'visually-hidden';
 
   return (
     <div className="orders">
@@ -137,7 +174,25 @@ function Orders({ orders, orderService, ordersUpdateCheck }) {
       >
         All items
       </button>
-      <p>This is just the subtotal so far. Tax and delivery will be added when we know the amounts.</p>
+      {displayGroup === 'none' &&
+        <div>
+          <p>This is just the subtotal so far. Tax and delivery will be added when we know the amounts.</p>
+          <label>
+          Split costs:
+          <input
+            className={displayOnPersonTabOnlyClass}
+            type="number"
+            step="0.01"
+            name="split-cost"
+            value={splitCost}
+            onChange={handleSplitCostChange}
+            onBlur={updateInviteRecord}
+            placeholder="Split Cost"
+           />
+          </label>
+        </div>
+      }
+
       {groupedOrders.map(group => {
         return (
           <div className="group" key={group.header}>

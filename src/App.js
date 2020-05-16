@@ -24,11 +24,6 @@ const socket = io(process.env.REACT_APP_API_URL);
 const client = feathers();
 client.configure(feathers.socketio(socket));
 
-// this works:
-// client.service('invites').create({
-//   text: 'invite from client init'
-// });
-
 // Feathers Services
 const inviteService = client.service('invites');
 const orderService = client.service('orders');
@@ -76,6 +71,19 @@ function App() {
   //   });
   // }, []); //only re-run the effect if new message comes in
 
+  // Load invite object
+  // WE know the difference between the existingInvite created from the url and the actual loaded object by checking for the timestamp
+  useEffect(() => {
+    if (invite && invite._id && !invite.timestamp) {
+      inviteService.find({
+        query: {
+          _id: searchParams.get('invite')
+        }
+      })
+      .then(data => setInvite(data.data[0]));
+    }
+  }, [invite, searchParams]);
+
   // Get existing orders
   useEffect(() => {
     if (invite && invite._id) {
@@ -115,6 +123,16 @@ function App() {
       }
     });
   });
+
+  useEffect(() => {
+    if (invite && invite._id) {
+      inviteService.on('patched', updatedInvite => {
+        if (updatedInvite._id === invite._id) {
+          setInvite(updatedInvite);
+        }
+      });
+    }
+  }, [invite]);
 
   function renderForms() {
     let render = '';
@@ -159,7 +177,9 @@ function App() {
       (<Orders
         orders={orders}
         orderService={orderService}
+        inviteService={inviteService}
         ordersUpdateCheck={ordersUpdateCheck}
+        invite={invite}
       />) :
       '';
   }
