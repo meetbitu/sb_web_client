@@ -97,6 +97,8 @@ const OrderForm = ({ invite, orderService }) => {
           <option value="">Select dish</option>
           <option value="Chicken Katsu">Chicken Katsu</option>
           <option value="Port Katsu">Pork Katsu</option>
+          <option value="Naan Bread with Curry Sauce">Naan Bread with Curry Sauce</option>
+          <option value="Naan Bread">Naan Bread</option>
         </select>
         <select
           name="spice"
