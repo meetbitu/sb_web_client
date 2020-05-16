@@ -104,6 +104,8 @@ const OrderForm = ({ invite, orderService }) => {
           value={input.spice}
         >
           <option value="">Select spice level</option>
+          <option value="Mild">Mild</option>
+          <option value="Standard">Standard</option>
           <option value="Level 1">Level 1</option>
           <option value="Level 2">Level 2</option>
           <option value="Level 3">Level 3</option>
