@@ -91,6 +91,12 @@ input {
   width: 87vw;
 }
 
+textarea.line-item-additional-info {
+  font-size: 13px;
+  width: 100%;
+  height: 3em;
+}
+
 label {
   display: block;
 }
@@ -131,12 +137,17 @@ form {
   margin-bottom: 25px;
 }
 
-.order-form header {
+.order-form {
+  /* Room for cart */
+  margin-bottom: 45px;
+}
+
+.order-form-header {
   margin-bottom: 20px;
   text-align: center;
 }
 
-.order-form header button {
+.order-form-header button {
   font-size: 14px;
 }
 
@@ -154,4 +165,48 @@ form {
 
 .orders {
   text-align: center;
+}
+
+.order .description {
+  margin-top: 0;
+  margin-left: 15px;
+  font-style: italic;
+  font-size: 12px;
+}
+
+.dish {
+  border: 1px solid #ccc;
+  background-color: white;
+  margin-bottom: 10px;
+
+}
+
+button.dish-header {
+  width: 100%;
+  border: none;
+  background-color: white;
+  padding: 20px 0;
+  cursor: pointer;
+}
+
+.cart-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #f58985;
+  opacity: 0.9;
+}
+
+.cart {
+  max-width: 400px;
+  margin: 10px auto;
+}
+
+.cart-header {
+  display: inline;
+}
+
+.cart button {
+  margin-left: 20px;
 }

@@ -55,8 +55,13 @@ function Order({ order, displayCost, orderService }) {
 
   return (
     <div className="order" key={order._id}>
-       {order.order} - Spice {order.spice} for {order.name}
-       { costField() }
+      {order.quantity}x {order.order} {order.options}
+      {order.additions &&
+        <p className="description">
+          {order.additions}
+        </p>
+      }
+      { costField() }
     </div>
   );
 }

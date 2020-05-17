@@ -1,3 +1,5 @@
+import LineItem from './LineItem.jsx';
+import Order from './Order.jsx';
 import Mixpanel from '../imports/Mixpanel';
 import React, {
   useState,
@@ -12,6 +14,7 @@ const OrderForm = ({ invite, orderService }) => {
     spice: "",
   };
   const [input, setInput] = useState(initialInput);
+  const [cartOrders, setCartOrders] = useState([]);
   const [message, setMessage] = useState();
 
   const defaultCopyText = 'Copy invite link to send to your friends';
@@ -40,6 +43,10 @@ const OrderForm = ({ invite, orderService }) => {
   function submitRequest(event) {
     event.preventDefault();
 
+    if (event.currentTarget.className === 'submit-order') {
+      return;
+    }
+
     // @TODO: Validate required fields on form
 
     // Use the orders service from the server
@@ -62,9 +69,56 @@ const OrderForm = ({ invite, orderService }) => {
       { __html: '✨🍛✨'};
   }
 
+  function renderSubmitButton() {
+    return (Object.keys(cartOrders).length) ? (
+      <div className="form-actions">
+        <button
+          type="submit"
+          className="order-submit"
+        >
+          Thankssss!
+        </button>
+      </div>
+    ) :
+    '';
+  }
+
+  function renderCartOrders() {
+    const orders = cartOrders.map((order, index) => <Order order={order} key={index} />);
+
+    // const cartCount = Object.keys(cartOrders).length;
+    let cartCount = 0;
+
+    for (var i = Object.keys(cartOrders).length - 1; i >= 0; i--) {
+      cartCount += parseFloat(cartOrders[i].quantity, 10);
+    }
+
+    const itemPlural = cartCount === 1 ? 'item' : 'items';
+
+    const output = (
+      <div className="cart-wrapper">
+        <div className="cart">
+          <header className="cart-header">
+            <h3>{cartCount} {itemPlural} in your cart</h3>
+            <button>
+              Checkout
+            </button>
+          </header>
+          {orders}
+        </div>
+      </div>
+    );
+
+    return cartCount > 0 ? output : '';
+  }
+
+  function appendCartOrder(order) {
+    setCartOrders(cartOrders.concat(order));
+  }
+
   return (
     <div className="order-form">
-      <header>
+      <header className="order-form-header">
         <h2>{invite.text}</h2>
         <CopyToClipboard
           text={encodeURI(`${window.location.protocol}//${window.location.host}?invite=${invite._id}&text=${invite.text}`)}
@@ -78,6 +132,51 @@ const OrderForm = ({ invite, orderService }) => {
           dangerouslySetInnerHTML={inviteEmoji()}
         />
       </header>
+
+      <LineItem
+        name="Chicken Katsu"
+        appendCartOrder={appendCartOrder}
+        options={[
+          'level 1',
+          'level 2',
+          'level 3',
+          'level 4',
+          'level 5',
+          'level 6',
+          'level 7',
+          'level 8',
+          'level 9',
+          'level 10',
+        ]}
+      />
+
+      <LineItem
+        name="Pork Katsu"
+        appendCartOrder={appendCartOrder}
+        options={[
+          'level 1',
+          'level 2',
+          'level 3',
+          'level 4',
+          'level 5',
+          'level 6',
+          'level 7',
+          'level 8',
+          'level 9',
+          'level 10',
+        ]}
+      />
+
+      <LineItem
+        name="Naan Bread with Curry Sauce"
+        appendCartOrder={appendCartOrder}
+      />
+
+      <LineItem
+        name="Naan Bread"
+        appendCartOrder={appendCartOrder}
+      />
+
       <form
         className="submit-order"
         onSubmit={submitRequest}
@@ -89,48 +188,13 @@ const OrderForm = ({ invite, orderService }) => {
           onChange={handleInputChange}
           placeholder="Name"
         />
-        <select
-          name="order"
-          onChange={handleInputChange}
-          value={input.order}
-        >
-          <option value="">Select dish</option>
-          <option value="Chicken Katsu">Chicken Katsu</option>
-          <option value="Port Katsu">Pork Katsu</option>
-          <option value="Naan Bread with Curry Sauce">Naan Bread with Curry Sauce</option>
-          <option value="Naan Bread">Naan Bread</option>
-        </select>
-        <select
-          name="spice"
-          onChange={handleInputChange}
-          value={input.spice}
-        >
-          <option value="">Select spice level</option>
-          <option value="Mild">Mild</option>
-          <option value="Standard">Standard</option>
-          <option value="Level 1">Level 1</option>
-          <option value="Level 2">Level 2</option>
-          <option value="Level 3">Level 3</option>
-          <option value="Level 4">Level 4</option>
-          <option value="Level 5">Level 5</option>
-          <option value="Level 6">Level 6</option>
-          <option value="Level 7">Level 7</option>
-          <option value="Level 8">Level 8</option>
-          <option value="Level 9">Level 9</option>
-          <option value="Level 10">Level 10</option>
-        </select>
-        <div className="form-actions">
-          <button
-            type="submit"
-            className="order-submit"
-          >
-            Thankssss!
-          </button>
-        </div>
+
+        {renderSubmitButton()}
         <footer>
           <h3 className="messages">{message}</h3>
         </footer>
       </form>
+      {renderCartOrders()}
     </div>
   );
 }

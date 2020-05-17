@@ -12,8 +12,6 @@ import OrderForm from './components/OrderForm.jsx';
 import Orders from './components/Orders.jsx';
 import InviteTypeChooser from './components/InviteTypeChooser.jsx';
 
-import coco from './coco.png';
-
 // Styles
 import './App.css';
 
@@ -185,7 +183,7 @@ function App() {
   }
 
   function renderGraphic() {
-    return (inviteTypeData && inviteTypeData.graphic) ? inviteTypeData.graphic : <img src={coco} className="App-logo" alt="logo" />;
+    return (inviteTypeData && inviteTypeData.graphic) ? inviteTypeData.graphic : '';
   }
 
   const appClasses = (inviteTypeData && inviteTypeData.type) ?
