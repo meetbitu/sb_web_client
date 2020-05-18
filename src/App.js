@@ -7,7 +7,7 @@ import React, {
 
 // Components
 import Cart from './components/Cart.jsx';
-// import Checkout from './components/Checkout.jsx';
+import Checkout from './components/Checkout.jsx';
 import InviteTypeChooser from './components/InviteTypeChooser.jsx';
 import OrderForm from './components/OrderForm.jsx';
 import Orders from './components/Orders.jsx';
@@ -136,21 +136,18 @@ function App() {
     }
   }, [invite]);
 
-  function render() {
-    let render = '';
+  function renderMain() {
+    let render = null;
     if (displayCheckout) {
-      // const customerCount = Object.keys(orders).length;
-      // render = (
-      //   <Checkout
-      //     invite={invite}
-      //     cartOrders={cartOrders}
-      //     orderService={orderService}
-      //     customerCount={customerCount}
-      //     toggleCheckout={toggleCheckout}
-      //   />
-      // );
+      const customerCount = Object.keys(orders).length;
       render = (
-        <div>Checkout debug</div>
+        <Checkout
+          invite={invite}
+          cartOrders={cartOrders}
+          orderService={orderService}
+          customerCount={customerCount}
+          toggleCheckout={toggleCheckout}
+        />
       );
     }
     else if (invite) {
@@ -220,7 +217,7 @@ function App() {
         {renderGraphic()}
         <h1>Make Sabay</h1>
       </header>
-      { render() }
+      { renderMain() }
       { renderOrders() }
       { Object.keys(cartOrders).length > 0 && !displayCheckout &&
         <Cart
