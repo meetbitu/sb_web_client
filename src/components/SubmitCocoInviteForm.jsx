@@ -1,15 +1,15 @@
 import React, {
-  // useState,
+  useState,
   useEffect,
 } from 'react';
 import Mixpanel from '../imports/Mixpanel';
 
 function SubmitCocoInviteForm({ setInvite, inviteService }) {
-  // const initialState = {
-  //     request: "",
-  // };
-  // const [input, setInput] = useState(initialState);
-  // const [startedTyping, setTyping] = useState(false);
+  const initialState = {
+      splitCost: '',
+  };
+  const [input, setInput] = useState(initialState);
+  const [startedTyping, setTyping] = useState(false);
 
   useEffect(() => {
     Mixpanel.first_contact({
@@ -18,18 +18,18 @@ function SubmitCocoInviteForm({ setInvite, inviteService }) {
     });
   }, []); // Only fire once
 
-  // const handleInputChange = (e) => {
-  //   if (!startedTyping) {
-  //     setTyping(true);
+  const handleInputChange = (e) => {
+    if (!startedTyping) {
+      setTyping(true);
 
-  //     Mixpanel.track('Started typing in the initial request form');
-  //   }
+      Mixpanel.track('Started typing in the initial request form');
+    }
 
-  //   setInput({
-  //     ...input,
-  //     [e.currentTarget.name]: e.currentTarget.value
-  //   });
-  // }
+    setInput({
+      ...input,
+      [e.currentTarget.name]: e.currentTarget.value
+    });
+  }
 
   function submitRequest(event) {
     event.preventDefault();
@@ -38,7 +38,8 @@ function SubmitCocoInviteForm({ setInvite, inviteService }) {
     inviteService.create({
       text: "Let's order CoCo together",
       timestamp: Date.now(),
-      // text: `Order CoCo with ${event.target.request.value}`,
+      splitCost: input.splitCost,
+      instructions: input.instructions,
     }).then((data) => {
       setInvite(data);
 
@@ -57,13 +58,26 @@ function SubmitCocoInviteForm({ setInvite, inviteService }) {
       className="submit-request"
       onSubmit={submitRequest}
     >
-{/*      <input
+      <input
         type="text"
-        name="request"
-        value={input.request}
+        name="orderTitle"
+        value={input.title}
         onChange={handleInputChange}
-        placeholder="Name 🍛"
-      />*/}
+        defaultValue="Let's order CoCo together!"
+      />
+      <input
+        type="number"
+        step="0.01"
+        name="splitCost"
+        value={input.splitCost}
+        onChange={handleInputChange}
+        placeholder="Delivery fee and other split costs"
+      />
+      <textarea
+        name="instructions"
+        onChange={handleInputChange}
+        placeholder="Payment or other instructions to the customer"
+      />
       <div className="form-actions">
         <button
           type="submit"

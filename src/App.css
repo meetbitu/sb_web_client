@@ -94,10 +94,14 @@ textarea {
   width: 100%;
 }
 
+textarea {
+  height: 3em;
+  font-size: 24px;
+  resize: vertical;
+}
+
 textarea.line-item-additional-info {
   font-size: 13px;
-  height: 3em;
-  resize: vertical;
 }
 
 label {
@@ -114,6 +118,7 @@ button[type=submit] {
   color: #4b1d09;
   width: 100%;
   max-width: 400px;
+  margin-top: 20px;
 }
 
 button[type=submit]:hover {
@@ -123,6 +128,10 @@ button[type=submit]:hover {
 .custom button[type=submit] {
   background-color: #f85158;
   color: white;
+}
+
+.multi-line-text {
+  white-space: pre-line;
 }
 
 .quantity-widget {
@@ -218,12 +227,6 @@ button.dish-header {
   margin-left: 20px;
 }
 
-.checkout button[type='submit'] {
+.checkout button[type=submit] {
   background-color: #f58985;
-  margin-top: 20px;
-}
-
-textarea.checkout-address {
-  height: 3em;
-  font-size: 24px;
 }

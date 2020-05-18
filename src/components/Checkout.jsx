@@ -51,6 +51,9 @@ function Checkout({ invite, cartOrders, orderService }) {
         <h3>Review order</h3>
       </header>
       {renderedOrders}
+      {!!invite.instructions &&
+        <p className="instructions multi-line-text">{invite.instructions}</p>
+      }
       <form
         onSubmit={onSubmit}
       >
