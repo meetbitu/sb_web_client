@@ -1,9 +1,9 @@
 import React, {
   useState,
 } from 'react';
-import LineItem from './LineItem.jsx';
+import CheckoutCostSummary from './CheckoutCostSummary.jsx';
 
-function Checkout({ invite, cartOrders, orderService }) {
+function Checkout({ invite, cartOrders, orderService, customerCount }) {
   const initialInput = {
     name: '',
     orders: '',
@@ -36,21 +36,16 @@ function Checkout({ invite, cartOrders, orderService }) {
 
   }
 
-
-
-  const renderedOrders = cartOrders.map((item, index) => <LineItem item={item} key={index} />);
-  // let cartCount = 0;
-  // for (var i = Object.keys(cartOrders).length - 1; i >= 0; i--) {
-  //   cartCount += parseFloat(cartOrders[i].quantity, 10);
-  // }
-  // const itemPlural = cartCount === 1 ? 'item' : 'items';
-
   return (
     <div className="checkout">
       <header className="checkout-header">
         <h3>Review order</h3>
       </header>
-      {renderedOrders}
+      <CheckoutCostSummary
+        cartOrders={cartOrders}
+        invite={invite}
+        customerCount={customerCount}
+      />
       {!!invite.instructions &&
         <p className="instructions multi-line-text">{invite.instructions}</p>
       }

@@ -139,11 +139,14 @@ function App() {
   function render() {
     let render = '';
     if (displayCheckout) {
+      // Add one to account for current customer about to check out
+      const customerCount = Object.keys(orders).length + 1;
       render = (
         <Checkout
           invite={invite}
           cartOrders={cartOrders}
           orderService={orderService}
+          customerCount={customerCount}
         />
       );
     }
