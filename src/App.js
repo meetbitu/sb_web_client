@@ -6,11 +6,12 @@ import React, {
 } from 'react';
 
 // Components
-import SubmitCocoInviteForm from './components/SubmitCocoInviteForm.jsx';
-import SubmitCustomInviteForm from './components/SubmitCustomInviteForm.jsx';
+import Cart from './components/Cart.jsx';
+import InviteTypeChooser from './components/InviteTypeChooser.jsx';
 import OrderForm from './components/OrderForm.jsx';
 import Orders from './components/Orders.jsx';
-import InviteTypeChooser from './components/InviteTypeChooser.jsx';
+import SubmitCocoInviteForm from './components/SubmitCocoInviteForm.jsx';
+import SubmitCustomInviteForm from './components/SubmitCustomInviteForm.jsx';
 
 // Styles
 import './App.css';
@@ -39,6 +40,7 @@ function App() {
 
   const [invite, setInvite] = useState(existingInvite);
   const [orders, setOrders] = useState([]);
+  const [cartOrders, setCartOrders] = useState([]);
   const [ordersUpdateCheck, setOrdersUpdateCheck] = useState('');
   const [inviteTypeData, setInviteTypeData] = useState(null);
 
@@ -138,7 +140,8 @@ function App() {
       render = (
         <OrderForm
           invite={invite}
-          orderService={orderService}
+          cartOrders={cartOrders}
+          setCartOrders={setCartOrders}
         />
       );
     }
@@ -198,6 +201,11 @@ function App() {
       </header>
       { renderForms() }
       { renderOrders() }
+      { Object.keys(cartOrders).length > 0 &&
+        <Cart
+          cartOrders={cartOrders}
+        />
+      }
     </div>
   );
 }

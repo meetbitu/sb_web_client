@@ -45,6 +45,9 @@ function SubmitCocoInviteForm({ setInvite, inviteService }) {
       Mixpanel.track('Successfully created a request');
 
       // Should we update the browser address?
+    }).catch(e => {
+      console.log(e);
+      // @TODO: Display an error message
     });
 
   }

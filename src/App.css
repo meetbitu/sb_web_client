@@ -52,7 +52,6 @@ body {
   display: flex;
   min-width: 0;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
   max-width: 400px;
   margin: 0 auto 30px;
@@ -134,8 +133,12 @@ button[type=submit]:hover {
 .invite-type-choice {
   background-color: white;
   border-radius: 30px;
-  padding: 15px 0;
+  padding-top: 15px;
   margin-bottom: 25px;
+}
+
+.invite-type-choice button {
+  border-radius: 0 0 30px 30px
 }
 
 .order-form {
@@ -179,7 +182,7 @@ button[type=submit]:hover {
   border: 1px solid #ccc;
   background-color: white;
   margin-bottom: 10px;
-
+  padding: 10px;
 }
 
 button.dish-header {
