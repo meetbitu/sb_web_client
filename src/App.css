@@ -183,9 +183,8 @@ button[type=submit]:hover {
   text-align: center;
 }
 
-.order .description {
+p.description {
   margin-top: 0;
-  margin-left: 15px;
   font-style: italic;
   font-size: 12px;
 }
@@ -229,4 +228,8 @@ button.item-header {
 
 .checkout button[type=submit] {
   background-color: #f58985;
+}
+
+.checkout .price {
+  float: right;
 }

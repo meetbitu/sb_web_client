@@ -11,6 +11,7 @@ function Checkout({ invite, cartOrders, orderService, customerCount }) {
   };
 
   const [input, setInput] = useState(initialInput);
+  const [checkoutComplete, setCheckoutComplete] = useState(false);
 
   const handleInputChange = (e) => setInput({
     ...input,
@@ -21,6 +22,10 @@ function Checkout({ invite, cartOrders, orderService, customerCount }) {
     event.preventDefault();
 
     // @TODO: Validate required fields on form
+    if (input.name === '') {
+      alert('Name is required');
+      return;
+    }
 
     // Use the orders service from the server
     orderService.create({
@@ -30,8 +35,8 @@ function Checkout({ invite, cartOrders, orderService, customerCount }) {
       inviteId: invite._id,
       timestamp: Date.now(),
     }).then((data) => {
-      console.log(data);
       setInput(initialInput);
+      setCheckoutComplete(true);
     });
 
   }
@@ -44,30 +49,32 @@ function Checkout({ invite, cartOrders, orderService, customerCount }) {
       <CheckoutCostSummary
         cartOrders={cartOrders}
         invite={invite}
-        customerCount={customerCount}
+        customerCount={checkoutComplete ? customerCount : customerCount + 1}
       />
-      {!!invite.instructions &&
+      {!checkoutComplete &&
+        <form
+          onSubmit={onSubmit}
+        >
+          <input
+            type="text"
+            name="name"
+            value={input.name}
+            onChange={handleInputChange}
+            placeholder="Your name"
+          />
+          <div className="form-actions">
+            <button
+              type="submit"
+              className="order-submit"
+            >
+              Confirm order
+            </button>
+          </div>
+        </form>
+      }
+      {checkoutComplete && invite.instructions &&
         <p className="instructions multi-line-text">{invite.instructions}</p>
       }
-      <form
-        onSubmit={onSubmit}
-      >
-        <input
-          type="text"
-          name="name"
-          value={input.name}
-          onChange={handleInputChange}
-          placeholder="Your name"
-        />
-        <div className="form-actions">
-          <button
-            type="submit"
-            className="order-submit"
-          >
-            Confirm order
-          </button>
-        </div>
-      </form>
     </div>
   );
 
