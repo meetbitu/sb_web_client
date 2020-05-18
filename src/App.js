@@ -7,7 +7,7 @@ import React, {
 
 // Components
 import Cart from './components/Cart.jsx';
-import Checkout from './components/Checkout.jsx';
+// import Checkout from './components/Checkout.jsx';
 import InviteTypeChooser from './components/InviteTypeChooser.jsx';
 import OrderForm from './components/OrderForm.jsx';
 import Orders from './components/Orders.jsx';
@@ -139,7 +139,7 @@ function App() {
   function render() {
     let render = '';
     if (displayCheckout) {
-      const customerCount = Object.keys(orders).length;
+      // const customerCount = Object.keys(orders).length;
       // render = (
       //   <Checkout
       //     invite={invite}
