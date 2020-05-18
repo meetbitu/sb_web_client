@@ -1,5 +1,5 @@
 import LineItem from './LineItem.jsx';
-import Order from './Order.jsx';
+// import Order from './Order.jsx';
 import Mixpanel from '../imports/Mixpanel';
 import React, {
   useState,

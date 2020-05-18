@@ -75,7 +75,7 @@ function LineItem({ name, options, appendCartOrder }) {
           onChange={handleInputChange}
           placeholder="Notes or requests"
         />
-        <div>
+        <div className="quantity-widget">
           <button
             key="quantity-decrease"
             type="button"

@@ -1,7 +1,7 @@
 import React from 'react';
 import Order from './Order.jsx';
 
-function Cart({ cartOrders }) {
+function Cart({ cartOrders, toggleCheckout }) {
   const renderedOrders = cartOrders.map((order, index) => <Order order={order} key={index} />);
 
   // const cartCount = Object.keys(cartOrders).length;
@@ -18,8 +18,8 @@ function Cart({ cartOrders }) {
       <div className="cart">
         <header className="cart-header">
           <h3>{cartCount} {itemPlural} in your cart</h3>
-          <button>
-            Checkout
+          <button onClick={toggleCheckout}>
+            Review order
           </button>
         </header>
         {renderedOrders}

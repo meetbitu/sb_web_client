@@ -74,7 +74,6 @@ body {
 }
 
 form {
-  text-align: center;
   max-width: 400px;
 }
 
@@ -124,6 +123,10 @@ button[type=submit]:hover {
 .custom button[type=submit] {
   background-color: #f85158;
   color: white;
+}
+
+.quantity-widget {
+  text-align: center;
 }
 
 .invite-type-chooser {
@@ -213,4 +216,14 @@ button.dish-header {
 
 .cart button {
   margin-left: 20px;
+}
+
+.checkout button[type='submit'] {
+  background-color: #f58985;
+  margin-top: 20px;
+}
+
+textarea.checkout-address {
+  height: 3em;
+  font-size: 24px;
 }

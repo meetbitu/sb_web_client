@@ -7,6 +7,7 @@ import React, {
 
 // Components
 import Cart from './components/Cart.jsx';
+import Checkout from './components/Checkout.jsx';
 import InviteTypeChooser from './components/InviteTypeChooser.jsx';
 import OrderForm from './components/OrderForm.jsx';
 import Orders from './components/Orders.jsx';
@@ -40,6 +41,7 @@ function App() {
 
   const [invite, setInvite] = useState(existingInvite);
   const [orders, setOrders] = useState([]);
+  const [displayCheckout, setDisplayCheckout] = useState(false);
   const [cartOrders, setCartOrders] = useState([]);
   const [ordersUpdateCheck, setOrdersUpdateCheck] = useState('');
   const [inviteTypeData, setInviteTypeData] = useState(null);
@@ -134,9 +136,18 @@ function App() {
     }
   }, [invite]);
 
-  function renderForms() {
+  function render() {
     let render = '';
-    if (invite) {
+    if (displayCheckout) {
+      render = (
+        <Checkout
+          invite={invite}
+          cartOrders={cartOrders}
+          orderService={orderService}
+        />
+      );
+    }
+    else if (invite) {
       render = (
         <OrderForm
           invite={invite}
@@ -189,6 +200,10 @@ function App() {
     return (inviteTypeData && inviteTypeData.graphic) ? inviteTypeData.graphic : '';
   }
 
+  function toggleCheckout() {
+    setDisplayCheckout(!displayCheckout);
+  }
+
   const appClasses = (inviteTypeData && inviteTypeData.type) ?
     `App ${inviteTypeData.type}` :
     "App";
@@ -199,11 +214,12 @@ function App() {
         {renderGraphic()}
         <h1>Make Sabay</h1>
       </header>
-      { renderForms() }
+      { render() }
       { renderOrders() }
-      { Object.keys(cartOrders).length > 0 &&
+      { Object.keys(cartOrders).length > 0 && !displayCheckout &&
         <Cart
           cartOrders={cartOrders}
+          toggleCheckout={toggleCheckout}
         />
       }
     </div>
