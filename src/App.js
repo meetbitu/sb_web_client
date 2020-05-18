@@ -140,14 +140,17 @@ function App() {
     let render = '';
     if (displayCheckout) {
       const customerCount = Object.keys(orders).length;
+      // render = (
+      //   <Checkout
+      //     invite={invite}
+      //     cartOrders={cartOrders}
+      //     orderService={orderService}
+      //     customerCount={customerCount}
+      //     toggleCheckout={toggleCheckout}
+      //   />
+      // );
       render = (
-        <Checkout
-          invite={invite}
-          cartOrders={cartOrders}
-          orderService={orderService}
-          customerCount={customerCount}
-          toggleCheckout={toggleCheckout}
-        />
+        <div>Checkout debug</div>
       );
     }
     else if (invite) {
