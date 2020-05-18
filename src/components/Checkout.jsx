@@ -1,7 +1,7 @@
 import React, {
   useState,
 } from 'react';
-import Order from './Order.jsx';
+import LineItem from './LineItem.jsx';
 
 function Checkout({ invite, cartOrders, orderService }) {
   const initialInput = {
@@ -38,7 +38,7 @@ function Checkout({ invite, cartOrders, orderService }) {
 
 
 
-  const renderedOrders = cartOrders.map((order, index) => <Order order={order} key={index} />);
+  const renderedOrders = cartOrders.map((item, index) => <LineItem item={item} key={index} />);
   // let cartCount = 0;
   // for (var i = Object.keys(cartOrders).length - 1; i >= 0; i--) {
   //   cartCount += parseFloat(cartOrders[i].quantity, 10);

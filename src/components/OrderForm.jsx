@@ -1,4 +1,4 @@
-import LineItem from './LineItem.jsx';
+import LineItemForm from './LineItemForm.jsx';
 // import Order from './Order.jsx';
 import Mixpanel from '../imports/Mixpanel';
 import React, {
@@ -26,6 +26,7 @@ const OrderForm = ({ invite, cartOrders, setCartOrders }) => {
   }
 
   function appendCartOrder(order) {
+    // @TODO: Add some values to the line item to identify it later
     setCartOrders(cartOrders.concat(order));
   }
 
@@ -46,9 +47,10 @@ const OrderForm = ({ invite, cartOrders, setCartOrders }) => {
         />
       </header>
 
-      <LineItem
+      <LineItemForm
         name="Chicken Katsu"
         appendCartOrder={appendCartOrder}
+        price="339.15"
         options={[
           'level 1',
           'level 2',
@@ -63,8 +65,9 @@ const OrderForm = ({ invite, cartOrders, setCartOrders }) => {
         ]}
       />
 
-      <LineItem
+      <LineItemForm
         name="Pork Katsu"
+        price="339.15"
         appendCartOrder={appendCartOrder}
         options={[
           'level 1',
@@ -80,12 +83,12 @@ const OrderForm = ({ invite, cartOrders, setCartOrders }) => {
         ]}
       />
 
-      <LineItem
+      <LineItemForm
         name="Naan Bread with Curry Sauce"
         appendCartOrder={appendCartOrder}
       />
 
-      <LineItem
+      <LineItemForm
         name="Naan Bread"
         appendCartOrder={appendCartOrder}
       />
