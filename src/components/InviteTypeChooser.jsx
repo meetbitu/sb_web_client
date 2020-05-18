@@ -14,13 +14,13 @@ function InviteTypeChooser({ setInviteTypeData }) {
         setInviteTypeData={setInviteTypeData}
         imgSrc={coco}
       />
-      <InviteTypeChoice
+      {/*<InviteTypeChoice
         type="custom"
         title="Create your own"
         description="Invite your friends to make sabay"
         setInviteTypeData={setInviteTypeData}
         emoji="☑️"
-      />
+      />*/}
     </div>
   );
 }

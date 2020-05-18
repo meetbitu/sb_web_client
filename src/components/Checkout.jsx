@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import CheckoutCostSummary from './CheckoutCostSummary.jsx';
 
-function Checkout({ invite, cartOrders, orderService, customerCount }) {
+function Checkout({ invite, cartOrders, orderService, customerCount, toggleCheckout }) {
   const initialInput = {
     name: '',
     orders: '',
@@ -45,6 +45,11 @@ function Checkout({ invite, cartOrders, orderService, customerCount }) {
     <div className="checkout">
       <header className="checkout-header">
         <h3>Review order</h3>
+        <button
+          onClick={toggleCheckout}
+        >
+          Back to menu
+        </button>
       </header>
       <CheckoutCostSummary
         cartOrders={cartOrders}

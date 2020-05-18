@@ -146,6 +146,7 @@ function App() {
           cartOrders={cartOrders}
           orderService={orderService}
           customerCount={customerCount}
+          toggleCheckout={toggleCheckout}
         />
       );
     }
