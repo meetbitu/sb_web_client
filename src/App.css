@@ -51,8 +51,12 @@ body {
 }
 
 .App-logo {
-  padding-top: 20px;
+  padding: 10px;
   height: 20vmin;
+}
+
+.logos {
+  text-align: center;
 }
 
 .group-logo {
@@ -133,6 +137,10 @@ button[type=submit]:hover {
   text-align: center;
 }
 
+span.quantity {
+  margin: 0 5px;
+}
+
 .invite-type-chooser {
   text-align: center;
 }
@@ -163,6 +171,42 @@ button[type=submit]:hover {
   font-size: 14px;
 }
 
+.order-form .item {
+  border: 1px solid #ccc;
+  background-color: white;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.order-form .item-price {
+  float: right;
+}
+
+button.item-header {
+  text-align: left;
+  width: 100%;
+  border: none;
+  background-color: white;
+  padding: 10px 0;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.item button[type=submit] {
+  font-size: 14px;
+  padding: 5px;
+  flex-grow: 1;
+  width: inherit;
+  margin-top: 0;
+  margin-left: 10px;
+}
+
+.add-to-cart-wrapper {
+  display: flex;
+  margin-top: 10px;
+}
+
 .copy-share-link {
   font-size: 12px;
 }
@@ -183,21 +227,6 @@ p.description {
   margin-top: 0;
   font-style: italic;
   font-size: 12px;
-}
-
-.item {
-  border: 1px solid #ccc;
-  background-color: white;
-  margin-bottom: 10px;
-  padding: 10px;
-}
-
-button.item-header {
-  width: 100%;
-  border: none;
-  background-color: white;
-  padding: 10px 0;
-  cursor: pointer;
 }
 
 .cart-wrapper {

@@ -67,37 +67,40 @@ function LineItemForm({ name, options, price, appendCartOrder }) {
     return (expanded) ? (
       <form
         onSubmit={onSubmit}
+        className="item-form"
       >
         {optionsSelect}
-        <textarea
+        {/*<textarea
           type="text"
           name="additions"
           className="line-item-additional-info"
           onChange={handleInputChange}
           placeholder="Notes or requests"
-        />
-        <div className="quantity-widget">
+        />*/}
+        <div className="add-to-cart-wrapper">
+          <div className="quantity-widget">
+            <button
+              key="quantity-decrease"
+              type="button"
+              onClick={decreaseQuantity}
+            >
+              -
+            </button>
+            <span className="quantity">{quantity}</span>
+            <button
+              key="quantity-increase"
+              type="button"
+              onClick={increaseQuantity}
+            >
+              +
+            </button>
+          </div>
           <button
-            key="quantity-decrease"
-            type="button"
-            onClick={decreaseQuantity}
+            type="submit"
           >
-            -
-          </button>
-          {quantity}
-          <button
-            key="quantity-increase"
-            type="button"
-            onClick={increaseQuantity}
-          >
-            +
+            Add to cart
           </button>
         </div>
-        <button
-          type="submit"
-        >
-          Add to cart
-        </button>
       </form>
     ) : '';
   }
@@ -109,7 +112,7 @@ function LineItemForm({ name, options, price, appendCartOrder }) {
         type="display-item"
         onClick={toggleDish}
       >
-        <h2>{name}</h2>
+        <span className="item-name">{name}</span>
         <span className="item-price"> ₱{price}</span>
       </button>
 
