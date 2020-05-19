@@ -35,6 +35,21 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
     setCartItems(cartItems.concat(order));
   }
 
+  const spiceLevels = [
+    'Mild',
+    'Standard',
+    'Level 1',
+    'Level 2',
+    'Level 3',
+    'Level 4',
+    'Level 5',
+    'Level 6',
+    'Level 7',
+    'Level 8',
+    'Level 9',
+    'Level 10',
+  ];
+
   return (
     <div className="order-form">
       <header className="order-form-header">
@@ -203,48 +218,65 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
       <h3>CoCoIchibanya</h3>
 
       <LineItemForm
-        name="Chicken Katsu"
-        appendCartOrder={appendCartOrder}
-        price="339.15"
-        options={[
-          'level 1',
-          'level 2',
-          'level 3',
-          'level 4',
-          'level 5',
-          'level 6',
-          'level 7',
-          'level 8',
-          'level 9',
-          'level 10',
-        ]}
-      />
-
-      <LineItemForm
-        name="Pork Katsu"
-        price="339.15"
-        appendCartOrder={appendCartOrder}
-        options={[
-          'level 1',
-          'level 2',
-          'level 3',
-          'level 4',
-          'level 5',
-          'level 6',
-          'level 7',
-          'level 8',
-          'level 9',
-          'level 10',
-        ]}
-      />
-
-      <LineItemForm
-        name="Naan Bread with Curry Sauce"
+        name="Chicken Cutlet Curry"
+        price="340"
+        options={spiceLevels}
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
-        name="Naan Bread"
+        name="Fried Chicken Omlette Curry"
+        price="330"
+        options={spiceLevels}
+        appendCartOrder={appendCartOrder}
+      />
+
+      <LineItemForm
+        name="Pork Cutlet Omlette Curry"
+        price="360"
+        appendCartOrder={appendCartOrder}
+        options={spiceLevels}
+      />
+
+      <LineItemForm
+        name="Beef Omlette Curry"
+        price="380"
+        appendCartOrder={appendCartOrder}
+        options={spiceLevels}
+      />
+
+      <LineItemForm
+        name="Cream Croquette & Cheese Curry"
+        price="360"
+        appendCartOrder={appendCartOrder}
+        options={spiceLevels}
+      />
+
+      <LineItemForm
+        name="Yakiniku Curry"
+        price="290"
+        appendCartOrder={appendCartOrder}
+        options={spiceLevels}
+      />
+
+      <LineItemForm
+        name="Hamburg Steak Curry with Cheese"
+        price="340"
+        appendCartOrder={appendCartOrder}
+        options={spiceLevels}
+      />
+
+      <LineItemForm
+        name="Shrimp Cutlet Curry"
+        price="340"
+        options={spiceLevels}
+        appendCartOrder={appendCartOrder}
+      />
+
+      <LineItemForm
+        name="Seafood Curry"
+        price="340"
+        options={spiceLevels}
         appendCartOrder={appendCartOrder}
       />
 
