@@ -36,7 +36,7 @@ function SubmitCocoInviteForm({ setInvite, inviteService }) {
 
     // Use the invites service from the server
     inviteService.create({
-      text: "Let's order CoCo together",
+      text: input.orderTitle,
       timestamp: Date.now(),
       splitCost: input.splitCost,
       instructions: input.instructions,

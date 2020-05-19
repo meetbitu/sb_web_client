@@ -17,6 +17,12 @@ import SubmitCustomInviteForm from './components/SubmitCustomInviteForm.jsx';
 // Styles
 import './App.css';
 
+// Images
+import coco from './coco.png';
+import mos from './mos.png';
+import tendon from './tendon.png';
+import mitsuyado from './mitsuyado.png';
+
 /**
  * Feathers websocket connection
  */
@@ -199,10 +205,6 @@ function App() {
       '';
   }
 
-  function renderGraphic() {
-    return (inviteTypeData && inviteTypeData.graphic) ? inviteTypeData.graphic : '';
-  }
-
   function toggleCheckout() {
     setDisplayCheckout(!displayCheckout);
   }
@@ -214,7 +216,12 @@ function App() {
   return (
     <div className={appClasses}>
       <header className="App-header">
-        {renderGraphic()}
+        <div className="logos">
+          <img src={coco} className="App-logo" alt="logo" />
+          <img src={mos} className="App-logo" alt="logo" />
+          <img src={tendon} className="App-logo" alt="logo" />
+          <img src={mitsuyado} className="App-logo" alt="logo" />
+        </div>
         <h1>Make Sabay</h1>
       </header>
       { renderMain() }

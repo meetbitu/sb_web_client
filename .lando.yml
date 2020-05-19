@@ -9,4 +9,4 @@ tooling:
     service: appserver
 proxy:
   appserver:
-    - social-buying-web-client.lndo.site
+    - social-buying-web-client.lndo.site:3000

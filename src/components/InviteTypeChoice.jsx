@@ -24,7 +24,7 @@ function InviteTypeChoice({ type, title, description, setInviteTypeData, imgSrc,
 
     setInviteTypeData({
       type,
-      graphic: renderGraphic(),
+      // graphic: renderGraphic(),
     });
   }
 
