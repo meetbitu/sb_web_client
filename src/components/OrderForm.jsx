@@ -12,7 +12,7 @@ import mos from '../mos.png';
 import tendon from '../tendon.png';
 import mitsuyado from '../mitsuyado.png';
 
-const OrderForm = ({ invite, cartOrders, setCartOrders }) => {
+const OrderForm = ({ invite, cartItems, setCartItems }) => {
   const defaultCopyText = 'Copy invite link to send to your friends';
   const [copiedText, setCopiedText] = useState(defaultCopyText);
 
@@ -32,7 +32,7 @@ const OrderForm = ({ invite, cartOrders, setCartOrders }) => {
 
   function appendCartOrder(order) {
     // @TODO: Add some values to the line item to identify it later
-    setCartOrders(cartOrders.concat(order));
+    setCartItems(cartItems.concat(order));
   }
 
   return (

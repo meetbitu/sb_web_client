@@ -1,12 +1,12 @@
 import React from 'react';
 import LineItem from './LineItem.jsx';
 
-function CartPreview({ cartOrders, toggleCheckout }) {
-  // const cartCount = Object.keys(cartOrders).length;
+function CartPreview({ cartItems, toggleCheckout }) {
+  // const cartCount = Object.keys(cartItems).length;
   let cartCount = 0;
-  const numberOfOrders = Object.keys(cartOrders).length;
+  const numberOfOrders = Object.keys(cartItems).length;
   for (var i = numberOfOrders - 1; i >= 0; i--) {
-    cartCount += parseFloat(cartOrders[i].quantity, 10);
+    cartCount += parseFloat(cartItems[i].quantity, 10);
   }
 
   const itemPlural = cartCount === 1 ? 'item' : 'items';
@@ -20,7 +20,7 @@ function CartPreview({ cartOrders, toggleCheckout }) {
             Review order
           </button>
         </header>
-        <LineItem item={cartOrders[numberOfOrders -  1]} />
+        <LineItem item={cartItems[numberOfOrders -  1]} />
       </div>
     </div>
   );

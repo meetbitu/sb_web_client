@@ -48,8 +48,9 @@ function App() {
   const [invite, setInvite] = useState(existingInvite);
   const [orders, setOrders] = useState([]);
   const [displayCheckout, setDisplayCheckout] = useState(false);
-  const [cartOrders, setCartOrders] = useState([]);
-  const [ordersUpdateCheck, setOrdersUpdateCheck] = useState('');
+  const [cartItems, setCartItems] = useState([]);
+  // ordersUpdateCheck is used to re-render the orders list. Uncomment when we display orders again.
+  // const [ordersUpdateCheck, setOrdersUpdateCheck] = useState('');
   const [inviteTypeData, setInviteTypeData] = useState(null);
 
   /**
@@ -116,7 +117,7 @@ function App() {
     orderService.on('created', order => {
       // Merge with orders and setOrders
       setOrders(orders.concat(order));
-      setOrdersUpdateCheck(JSON.stringify(orders.concat(order)));
+      // setOrdersUpdateCheck(JSON.stringify(orders.concat(order)));
     });
   });
 
@@ -127,7 +128,7 @@ function App() {
         const updatedOrders = orders;
         updatedOrders[matchingIndex] = updatedOrder;
         setOrders(updatedOrders);
-        setOrdersUpdateCheck(JSON.stringify(updatedOrders));
+        // setOrdersUpdateCheck(JSON.stringify(updatedOrders));
       }
     });
   });
@@ -149,7 +150,7 @@ function App() {
       render = (
         <Checkout
           invite={invite}
-          cartOrders={cartOrders}
+          cartItems={cartItems}
           orderService={orderService}
           customerCount={customerCount}
           toggleCheckout={toggleCheckout}
@@ -160,8 +161,8 @@ function App() {
       render = (
         <OrderForm
           invite={invite}
-          cartOrders={cartOrders}
-          setCartOrders={setCartOrders}
+          cartItems={cartItems}
+          setCartItems={setCartItems}
         />
       );
     }
@@ -226,9 +227,9 @@ function App() {
       </header>
       { renderMain() }
       { /*renderOrders()*/ }
-      { Object.keys(cartOrders).length > 0 && !displayCheckout &&
+      { Object.keys(cartItems).length > 0 && !displayCheckout &&
         <CartPreview
-          cartOrders={cartOrders}
+          cartItems={cartItems}
           toggleCheckout={toggleCheckout}
         />
       }

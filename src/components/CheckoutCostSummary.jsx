@@ -1,8 +1,8 @@
 import React from 'react';
 import LineItem from './LineItem.jsx';
 
-function CheckoutCostSummary({ cartOrders, total, invite, customerCount }) {
-  const renderedOrders = cartOrders.map((item, index) => <LineItem item={item} key={index} />);
+function CheckoutCostSummary({ cartItems, total, invite, customerCount }) {
+  const renderedOrders = cartItems.map((item, index) => <LineItem item={item} key={index} />);
 
   return (
     <div className="checkout-cost-summary">
