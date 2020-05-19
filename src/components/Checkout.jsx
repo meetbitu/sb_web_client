@@ -46,7 +46,7 @@ function Checkout({ invite, cartOrders, orderService, customerCount, toggleCheck
   // If the checkout is not completed yet add one to account for this user
   const projectedCustomerCount = checkoutComplete ? customerCount : customerCount + 1
   let price = n => isNaN(n.price) ? 0 : n.price * n.quantity;
-  const subtotal = Object.keys(cartOrders).length > 1 ? cartOrders.reduce((a, b) => price(a) + price(b)) : price(cartOrders[0]);
+  const subtotal = Object.keys(cartOrders).reduce((previous, key) => previous + price(cartOrders[key]), 0);
 
   let total = subtotal;
   if (invite.splitCost) {

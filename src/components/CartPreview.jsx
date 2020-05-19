@@ -1,13 +1,11 @@
 import React from 'react';
 import LineItem from './LineItem.jsx';
 
-function Cart({ cartOrders, toggleCheckout }) {
-  const renderedOrders = cartOrders.map((item, index) => <LineItem item={item} key={index} />);
-
+function CartPreview({ cartOrders, toggleCheckout }) {
   // const cartCount = Object.keys(cartOrders).length;
   let cartCount = 0;
-
-  for (var i = Object.keys(cartOrders).length - 1; i >= 0; i--) {
+  const numberOfOrders = Object.keys(cartOrders).length;
+  for (var i = numberOfOrders - 1; i >= 0; i--) {
     cartCount += parseFloat(cartOrders[i].quantity, 10);
   }
 
@@ -22,11 +20,11 @@ function Cart({ cartOrders, toggleCheckout }) {
             Review order
           </button>
         </header>
-        {renderedOrders}
+        <LineItem item={cartOrders[numberOfOrders -  1]} />
       </div>
     </div>
   );
 
 }
 
-export default Cart;
+export default CartPreview;

@@ -6,11 +6,11 @@ import React, {
 } from 'react';
 
 // Components
-import Cart from './components/Cart.jsx';
+import CartPreview from './components/CartPreview.jsx';
 import Checkout from './components/Checkout.jsx';
 import InviteTypeChooser from './components/InviteTypeChooser.jsx';
 import OrderForm from './components/OrderForm.jsx';
-import Orders from './components/Orders.jsx';
+// import Orders from './components/Orders.jsx';
 import SubmitCocoInviteForm from './components/SubmitCocoInviteForm.jsx';
 import SubmitCustomInviteForm from './components/SubmitCustomInviteForm.jsx';
 
@@ -193,17 +193,17 @@ function App() {
     return render;
   }
 
-  function renderOrders() {
-    return invite && orders.length ?
-      (<Orders
-        orders={orders}
-        orderService={orderService}
-        inviteService={inviteService}
-        ordersUpdateCheck={ordersUpdateCheck}
-        invite={invite}
-      />) :
-      '';
-  }
+  // function renderOrders() {
+  //   return invite && orders.length ?
+  //     (<Orders
+  //       orders={orders}
+  //       orderService={orderService}
+  //       inviteService={inviteService}
+  //       ordersUpdateCheck={ordersUpdateCheck}
+  //       invite={invite}
+  //     />) :
+  //     '';
+  // }
 
   function toggleCheckout() {
     setDisplayCheckout(!displayCheckout);
@@ -225,9 +225,9 @@ function App() {
         <h1>Make Sabay</h1>
       </header>
       { renderMain() }
-      { renderOrders() }
+      { /*renderOrders()*/ }
       { Object.keys(cartOrders).length > 0 && !displayCheckout &&
-        <Cart
+        <CartPreview
           cartOrders={cartOrders}
           toggleCheckout={toggleCheckout}
         />

@@ -226,7 +226,7 @@ button.item-header {
   background-color: #f58985;
 }
 
-.checkout .price {
+.line-item .price {
   position: absolute;
   top: 0;
   right: 0;
