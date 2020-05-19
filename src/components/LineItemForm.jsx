@@ -47,8 +47,8 @@ function LineItemForm({ name, options, price, appendCartOrder }) {
 
 
   function decreaseQuantity() {
-    if (quantity > 0) {
-    const decreasedQuantity = quantity - 1;
+    if (quantity > 1) {
+      const decreasedQuantity = quantity - 1;
       setQuantity(decreasedQuantity);
     }
   }
