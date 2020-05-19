@@ -34,12 +34,28 @@ function Checkout({ invite, cartOrders, orderService, customerCount, toggleCheck
       orders: cartOrders,
       inviteId: invite._id,
       timestamp: Date.now(),
+      subtotal,
     }).then((data) => {
       setInput(initialInput);
       setCheckoutComplete(true);
     });
 
   }
+
+  // Calculate subtotal and delivery estimate
+  // If the checkout is not completed yet add one to account for this user
+  const projectedCustomerCount = checkoutComplete ? customerCount : customerCount + 1
+  let price = n => isNaN(n.price) ? 0 : n.price * n.quantity;
+  const subtotal = Object.keys(cartOrders).length > 1 ? cartOrders.reduce((a, b) => price(a) + price(b)) : price(cartOrders[0]);
+
+  let total = subtotal;
+  if (invite.splitCost) {
+    total += parseFloat(invite.splitCost) / parseFloat(projectedCustomerCount);
+  }
+
+  // if (invite.perCustomerCost) {
+  //   total += parseFloat(invite.perCustomerCost);
+  // }
 
   return (
     <div className="checkout">
@@ -54,7 +70,8 @@ function Checkout({ invite, cartOrders, orderService, customerCount, toggleCheck
       <CheckoutCostSummary
         cartOrders={cartOrders}
         invite={invite}
-        customerCount={checkoutComplete ? customerCount : customerCount + 1}
+        total={total}
+        customerCount={projectedCustomerCount}
       />
       {!checkoutComplete &&
         <form
