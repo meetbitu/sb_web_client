@@ -7,6 +7,7 @@ import Mixpanel from '../imports/Mixpanel';
 function SubmitCocoInviteForm({ setInvite, inviteService }) {
   const initialState = {
       splitCost: '',
+      orderTitle: "Let's order CoCo together!",
   };
   const [input, setInput] = useState(initialState);
   const [startedTyping, setTyping] = useState(false);
@@ -61,9 +62,8 @@ function SubmitCocoInviteForm({ setInvite, inviteService }) {
       <input
         type="text"
         name="orderTitle"
-        value={input.title}
+        value={input.orderTitle}
         onChange={handleInputChange}
-        defaultValue="Let's order CoCo together!"
       />
       <input
         type="number"

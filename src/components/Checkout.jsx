@@ -3,10 +3,10 @@ import React, {
 } from 'react';
 import CheckoutCostSummary from './CheckoutCostSummary.jsx';
 
-function Checkout({ invite, cartItems, orderService, customerCount, toggleCheckout }) {
+function Checkout({ invite, cartItems, orderService, orderCount, toggleCheckout }) {
   const initialInput = {
     name: '',
-    orders: '',
+    items: '',
     address: '',
   };
 
@@ -31,7 +31,7 @@ function Checkout({ invite, cartItems, orderService, customerCount, toggleChecko
     orderService.create({
       name: input.name,
       address: input.address,
-      orders: cartItems,
+      items: cartItems,
       inviteId: invite._id,
       timestamp: Date.now(),
       subtotal,
@@ -44,7 +44,8 @@ function Checkout({ invite, cartItems, orderService, customerCount, toggleChecko
 
   // Calculate subtotal and delivery estimate
   // If the checkout is not completed yet add one to account for this user
-  const projectedCustomerCount = checkoutComplete ? customerCount : customerCount + 1
+  // @TODO: Merge this inside of CheckoutCostSummary to reuse on admin order dsiplay
+  const projectedCustomerCount = checkoutComplete ? orderCount : orderCount + 1
   let price = n => isNaN(n.price) ? 0 : n.price * n.quantity;
   const subtotal = Object.keys(cartItems).reduce((previous, key) => previous + price(cartItems[key]), 0);
 
@@ -68,10 +69,10 @@ function Checkout({ invite, cartItems, orderService, customerCount, toggleChecko
         </button>
       </header>
       <CheckoutCostSummary
-        cartItems={cartItems}
+        items={cartItems}
         invite={invite}
         total={total}
-        customerCount={projectedCustomerCount}
+        orderCount={projectedCustomerCount}
       />
       {!checkoutComplete &&
         <form

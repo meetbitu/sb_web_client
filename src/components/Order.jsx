@@ -1,15 +1,15 @@
 import React from 'react';
+import CheckoutCostSummary from './CheckoutCostSummary.jsx';
 
-function Order({ order }) {
+function Order({ order, invite, fees }) {
   return (
-    <div className="order" key={order._id}>
-      {order.quantity}x {order.order} {order.options}
-      {order.additions &&
-        <p className="description">
-          {order.additions}
-        </p>
-      }
-    </div>
+    <CheckoutCostSummary
+      // key={order._id}
+      items={order.items}
+      invite={invite}
+      total={total}
+      orderCount={projectedCustomerCount}
+    />
   );
 }
 
