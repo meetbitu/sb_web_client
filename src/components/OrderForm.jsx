@@ -219,63 +219,63 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
 
       <LineItemForm
         name="Chicken Cutlet Curry"
-        price="340"
+        price="357"
         options={spiceLevels}
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Fried Chicken Omlette Curry"
-        price="330"
+        price="347"
         options={spiceLevels}
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Pork Cutlet Omlette Curry"
-        price="360"
+        price="378"
         appendCartOrder={appendCartOrder}
         options={spiceLevels}
       />
 
       <LineItemForm
         name="Beef Omlette Curry"
-        price="380"
+        price="399"
         appendCartOrder={appendCartOrder}
         options={spiceLevels}
       />
 
       <LineItemForm
         name="Cream Croquette & Cheese Curry"
-        price="360"
+        price="378"
         appendCartOrder={appendCartOrder}
         options={spiceLevels}
       />
 
       <LineItemForm
         name="Yakiniku Curry"
-        price="290"
+        price="305"
         appendCartOrder={appendCartOrder}
         options={spiceLevels}
       />
 
       <LineItemForm
         name="Hamburg Steak Curry with Cheese"
-        price="340"
+        price="357"
         appendCartOrder={appendCartOrder}
         options={spiceLevels}
       />
 
       <LineItemForm
         name="Shrimp Cutlet Curry"
-        price="340"
+        price="357"
         options={spiceLevels}
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Seafood Curry"
-        price="340"
+        price="357"
         options={spiceLevels}
         appendCartOrder={appendCartOrder}
       />
@@ -284,56 +284,56 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
       <h3>Mitsuyado Sei-Men</h3>
       <LineItemForm
         name="Yuzu Tsukemen"
-        price="305"
+        price="321"
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Karashi Tsukemen"
-        price="336"
+        price="353"
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Pork Cutlet Don"
-        price="210"
+        price="221"
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Chicken Karaage Don"
-        price="210"
+        price="221"
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Chahan"
-        price="179"
+        price="188"
         appendCartOrder={appendCartOrder}
       />
 
       <h4>Add-ons (cooked)</h4>
       <LineItemForm
         name="Pork Cutlet"
-        price="137"
+        price="144"
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Gyoza"
-        price="200"
+        price="210"
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Chicken Karaage"
-        price="200"
+        price="210"
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Extra Cheese Sauce"
-        price="84"
+        price="89"
         appendCartOrder={appendCartOrder}
       />
 
@@ -342,55 +342,55 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
 
       <LineItemForm
         name="Kohaku Tendon"
-        price="399"
+        price="419"
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Kakiage Tendon"
-        price="326"
+        price="343"
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Shrimp Tendon (8pcs)"
-        price="504"
+        price="530"
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Shrimp Tendon (5pc)"
-        price="399"
+        price="419"
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Pork Katsudon"
-        price="357"
+        price="375"
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Yakibuta Don"
-        price="336"
+        price="353"
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Kohaku Japanese White Rice"
-        price="53"
+        price="56"
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Wild Tiger Prawn Tempura (5pcs)"
-        price="368"
+        price="387"
         appendCartOrder={appendCartOrder}
       />
 
       <LineItemForm
         name="Spicy Sweet Fried Chicken"
-        price="294"
+        price="309"
         appendCartOrder={appendCartOrder}
       />
 
