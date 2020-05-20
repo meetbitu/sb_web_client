@@ -232,6 +232,7 @@ p.description {
   width: 100%;
   background-color: #f58985;
   opacity: 0.9;
+  padding: 10px;
 }
 
 .cart {
@@ -247,8 +248,17 @@ p.description {
   margin-left: 20px;
 }
 
+.checkout-header,
+.checkout-cost-summary {
+  padding: 0 10px;
+}
+
 .checkout button[type=submit] {
   background-color: #f58985;
+}
+
+.orders {
+  padding: 10px;
 }
 
 .line-item .price {
