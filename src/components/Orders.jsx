@@ -158,6 +158,10 @@ function Orders({ orders, ordersUpdateCheck, invite }) {
             total += parseFloat(invite.splitCost) / parseFloat(projectedCustomerCount);
           }
 
+          if (invite.perCustomerFee) {
+            total += parseFloat(invite.perCustomerFee);
+          }
+
           return (
             <div className="order" key={order._id}>
               <h3>{order.name}</h3>

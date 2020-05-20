@@ -59,9 +59,9 @@ function Checkout({ invite, cartItems, orderService, orderCount, toggleCheckout 
     total += parseFloat(invite.splitCost) / parseFloat(projectedCustomerCount);
   }
 
-  // if (invite.perCustomerCost) {
-  //   total += parseFloat(invite.perCustomerCost);
-  // }
+  if (invite.perCustomerFee) {
+    total += parseFloat(invite.perCustomerFee);
+  }
 
   return (
     <div className="checkout">

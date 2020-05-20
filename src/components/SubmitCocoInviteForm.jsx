@@ -7,6 +7,7 @@ import Mixpanel from '../imports/Mixpanel';
 function SubmitCocoInviteForm({ setInvite, inviteService }) {
   const initialState = {
       splitCost: '',
+      perCustomerFee: '',
       orderTitle: "Let's order CoCo together!",
   };
   const [input, setInput] = useState(initialState);
@@ -40,6 +41,7 @@ function SubmitCocoInviteForm({ setInvite, inviteService }) {
       text: input.orderTitle,
       timestamp: Date.now(),
       splitCost: input.splitCost,
+      perCustomerFee: input.perCustomerFee,
       instructions: input.instructions,
     }).then((data) => {
       setInvite(data);
@@ -72,6 +74,14 @@ function SubmitCocoInviteForm({ setInvite, inviteService }) {
         value={input.splitCost}
         onChange={handleInputChange}
         placeholder="Delivery fee and other split costs"
+      />
+      <input
+        type="number"
+        step="0.01"
+        name="perCustomerFee"
+        value={input.perCustomerFee}
+        onChange={handleInputChange}
+        placeholder="Fixed fees per order"
       />
       <textarea
         name="instructions"

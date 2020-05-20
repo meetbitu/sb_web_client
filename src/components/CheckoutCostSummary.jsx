@@ -18,6 +18,11 @@ function CheckoutCostSummary({ items, total, invite, orderCount }) {
           <p className="description">The more people who join this curry club the cheaper the delivery fee will be!</p>
         </div>
       }
+      {!!invite.perCustomerFee &&
+        <div className="line-item">
+          <div>Delivery fee: <span className="price">₱{invite.perCustomerFee}</span></div>
+        </div>
+      }
       <div className="line-item">Total: <span className="price">₱{renderTotal}</span></div>
     </div>
   );
