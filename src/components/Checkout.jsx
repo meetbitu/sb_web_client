@@ -66,12 +66,14 @@ function Checkout({ invite, cartItems, orderService, orderCount, toggleCheckout 
   return (
     <div className="checkout">
       <header className="checkout-header">
-        <h3>Review order</h3>
-        <button
-          onClick={toggleCheckout}
-        >
-          Back to menu
-        </button>
+        <h3>{checkoutComplete ? 'Order complete' : 'Review order'}</h3>
+        {!checkoutComplete &&
+          <button
+            onClick={toggleCheckout}
+          >
+            Back to menu
+          </button>
+        }
       </header>
       <CheckoutCostSummary
         items={cartItems}
