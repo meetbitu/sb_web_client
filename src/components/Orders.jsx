@@ -150,10 +150,10 @@ function Orders({ orders, ordersUpdateCheck, invite }) {
         <h2>{invite.text}</h2>
         {orders.map(order => {
           const projectedCustomerCount = orders.length;
-          let price = n => isNaN(n.price) ? 0 : n.price * n.quantity;
-          const subtotal = order.items.reduce((previous, current) => previous + price(current), 0);
+          // let price = n => isNaN(n.price) ? 0 : parseFloat(n.price) * parseFloat(n.quantity);
+          // const subtotal = order.items.reduce((previous, current) => previous + price(current), 0);
 
-          let total = subtotal;
+          let total = order.subtotal;
           if (invite.splitCost) {
             total += parseFloat(invite.splitCost) / parseFloat(projectedCustomerCount);
           }

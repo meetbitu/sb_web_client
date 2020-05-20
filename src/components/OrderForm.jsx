@@ -20,7 +20,7 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
     Mixpanel.first_contact({
       'first_contact': 'order form',
       'first_contact_time': Date.now(),
-      // 'referring_user': '',
+      'referring_user': 'beta',
     });
   }, []); // Only fire once
 

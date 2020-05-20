@@ -1,6 +1,9 @@
 import React, {
   useState,
 } from 'react';
+import Mixpanel from '../imports/Mixpanel';
+
+// Components
 import CheckoutCostSummary from './CheckoutCostSummary.jsx';
 
 function Checkout({ invite, cartItems, orderService, orderCount, toggleCheckout }) {
@@ -40,13 +43,15 @@ function Checkout({ invite, cartItems, orderService, orderCount, toggleCheckout 
       setCheckoutComplete(true);
     });
 
+    Mixpanel.track('Submitted order');
+
   }
 
   // Calculate subtotal and delivery estimate
   // If the checkout is not completed yet add one to account for this user
   // @TODO: Merge this inside of CheckoutCostSummary to reuse on admin order dsiplay
   const projectedCustomerCount = checkoutComplete ? orderCount : orderCount + 1
-  let price = n => isNaN(n.price) ? 0 : n.price * n.quantity;
+  let price = n => isNaN(n.price) ? 0 : parseFloat(n.price) * parseFloat(n.quantity);
   const subtotal = Object.keys(cartItems).reduce((previous, key) => previous + price(cartItems[key]), 0);
 
   let total = subtotal;

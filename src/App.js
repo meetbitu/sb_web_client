@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import Mixpanel from './imports/Mixpanel';
 
 // Components
 import CartPreview from './components/CartPreview.jsx';
@@ -158,6 +159,7 @@ function App() {
       );
     }
     else if (displayCheckout) {
+      Mixpanel.track('Viewed checkout page');
       render = (
         <Checkout
           invite={invite}
@@ -169,6 +171,7 @@ function App() {
       );
     }
     else if (invite) {
+      Mixpanel.track('Viewed order form');
       render = (
         <OrderForm
           invite={invite}

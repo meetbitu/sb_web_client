@@ -1,6 +1,7 @@
 import React, {
   useState,
 } from 'react';
+import Mixpanel from '../imports/Mixpanel';
 
 function LineItemForm({ name, options, price, appendCartOrder }) {
   const [expanded, setExpanded] = useState(false);
@@ -38,6 +39,8 @@ function LineItemForm({ name, options, price, appendCartOrder }) {
 
     appendCartOrder(order);
     setExpanded(false);
+
+    Mixpanel.track('Added an item to cart');
   }
 
   function increaseQuantity() {
