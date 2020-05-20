@@ -83,12 +83,6 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
       />
 
       <LineItemForm
-        name="Wagyu Burger"
-        price="309"
-        appendCartOrder={appendCartOrder}
-      />
-
-      <LineItemForm
         name="Yakiniku Garlic Rice Burger"
         price="189"
         appendCartOrder={appendCartOrder}
@@ -103,12 +97,6 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
       <LineItemForm
         name="Teriyaki Chicken Garlic Rice Burger"
         price="229"
-        appendCartOrder={appendCartOrder}
-      />
-
-      <LineItemForm
-        name="Wagyu Garlic Rice Burger"
-        price="329"
         appendCartOrder={appendCartOrder}
       />
 
