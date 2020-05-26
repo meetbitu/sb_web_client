@@ -7,7 +7,7 @@ import React, {
 import CheckoutCostSummary from './CheckoutCostSummary.jsx';
 // import OrderCost from './OrderCost.jsx';
 
-function Orders({ orders, ordersUpdateCheck, invite }) {
+function Orders({ orders, orderService, ordersUpdateCheck, invite }) {
   // const [displayGroup, setDisplayGroup] = useState('person');
   // const [groupedOrders, setGroupedOrders] = useState([{
   //   header: '',
@@ -143,8 +143,13 @@ function Orders({ orders, ordersUpdateCheck, invite }) {
   //   setSplitCostField(field);
   // }, [displayGroup, splitCost, updateInviteRecord]);
 
-
   const renderOrders = useCallback(() => {
+    const togglePaidStatus = (order) => {
+      orderService.patch(order._id, {
+        paid: order.paid ? false : true,
+      });
+    }
+
     return (
       <div className="orders">
         <h2>{invite.text}</h2>
@@ -171,12 +176,21 @@ function Orders({ orders, ordersUpdateCheck, invite }) {
                 total={total}
                 orderCount={projectedCustomerCount}
               />
+              <div className={`order-status ${order.paid ? 'paid' : 'unpaid'}`}>
+                Status: {order.paid ? 'Paid' : 'Unpaid'}
+                <button
+                  className="toggle-order-status"
+                  onClick={() => togglePaidStatus(order)}
+                >
+                  Mark {order.paid ? 'Unaid' : 'Paid'}
+                </button>
+              </div>
             </div>
           );
         })}
       </div>
     );
-  }, [orders, invite]);
+  }, [orders, invite, orderService]);
 
   useEffect(() => {
     setDisplayOrders(

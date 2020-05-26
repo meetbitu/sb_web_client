@@ -266,6 +266,22 @@ p.description {
   padding: 10px;
 }
 
+.order-status {
+  color: red;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: right;
+}
+
+.order-status.paid {
+  color: green;
+}
+
+button.toggle-order-status {
+  margin-left: 5px;
+}
+
 .line-item .price {
   position: absolute;
   top: 0;
