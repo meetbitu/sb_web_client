@@ -50,6 +50,7 @@ function App() {
   const [displayCheckout, setDisplayCheckout] = useState(false);
   const [displayOrders] = useState(searchParams.get('admin'));
   const [cartItems, setCartItems] = useState([]);
+  const [cartItemsUpdateCheck, setCartItemsUpdateCheck] = useState('');
   // ordersUpdateCheck is used to re-render the orders list. Uncomment when we display orders again.
   const [ordersUpdateCheck, setOrdersUpdateCheck] = useState('');
   const [inviteTypeData, setInviteTypeData] = useState(null);
@@ -145,6 +146,11 @@ function App() {
     }
   }, [invite]);
 
+  function setCartItemsWrapper(items) {
+    setCartItems(items);
+    setCartItemsUpdateCheck(JSON.stringify(items));
+  }
+
   function renderMain() {
     let render = null;
     if (displayOrders && invite) {
@@ -163,6 +169,8 @@ function App() {
       render = (
         <Checkout
           invite={invite}
+          setCartItems={setCartItemsWrapper}
+          cartItemsUpdateCheck={cartItemsUpdateCheck}
           cartItems={cartItems}
           orderService={orderService}
           orderCount={Object.keys(orders).length}
@@ -176,7 +184,7 @@ function App() {
         <OrderForm
           invite={invite}
           cartItems={cartItems}
-          setCartItems={setCartItems}
+          setCartItems={setCartItemsWrapper}
         />
       );
     }

@@ -6,7 +6,7 @@ import Mixpanel from '../imports/Mixpanel';
 // Components
 import CheckoutCostSummary from './CheckoutCostSummary.jsx';
 
-function Checkout({ invite, cartItems, orderService, orderCount, toggleCheckout }) {
+function Checkout({ invite, cartItems, cartItemsUpdateCheck, setCartItems, orderService, orderCount, toggleCheckout }) {
   const initialInput = {
     name: '',
     items: '',
@@ -63,6 +63,18 @@ function Checkout({ invite, cartItems, orderService, orderCount, toggleCheckout 
     total += parseFloat(invite.perCustomerFee);
   }
 
+  function removeCartItem(item) {
+    // @TODO: Unless we push cart items up to the server and get an _id this to match on item.order, item.quantity, item.additions, and item.options
+    const updatedCartItems = cartItems;
+    for (var i = updatedCartItems.length - 1; i >= 0; i--) {
+      if (JSON.stringify(item) === JSON.stringify(updatedCartItems[i])) {
+        updatedCartItems.splice(i, 1);
+      }
+    }
+
+    setCartItems(updatedCartItems);
+  }
+
   return (
     <div className="checkout">
       <header className="checkout-header">
@@ -77,6 +89,7 @@ function Checkout({ invite, cartItems, orderService, orderCount, toggleCheckout 
       </header>
       <CheckoutCostSummary
         items={cartItems}
+        removeCartItem={removeCartItem}
         invite={invite}
         total={total}
         orderCount={projectedCustomerCount}

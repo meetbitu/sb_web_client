@@ -202,6 +202,11 @@ button.item-header {
   margin-left: 10px;
 }
 
+.remove-item {
+  cursor: pointer;
+  margin-right: 5px;
+}
+
 .add-to-cart-wrapper {
   display: flex;
   margin-top: 10px;
@@ -240,7 +245,7 @@ p.description {
   margin: 10px auto;
 }
 
-.cart-header {
+.cart-header h3 {
   display: inline;
 }
 

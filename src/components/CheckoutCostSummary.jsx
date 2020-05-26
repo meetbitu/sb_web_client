@@ -1,8 +1,14 @@
 import React from 'react';
 import LineItem from './LineItem.jsx';
 
-function CheckoutCostSummary({ items, total, invite, orderCount }) {
-  const renderedItems = items.map((item, index) => <LineItem item={item} key={index} />);
+function CheckoutCostSummary({ items, removeCartItem, total, invite, orderCount }) {
+  const renderedItems = items.map((item, index) => (
+    <LineItem
+      item={item}
+      key={index}
+      removeCartItem={removeCartItem}
+    />
+  ));
 
   const proRatedDelivery = parseFloat(parseFloat(invite.splitCost) / parseFloat(orderCount));
   const renderProRatedDelivery = proRatedDelivery % 1 === 0 ? proRatedDelivery : parseFloat(proRatedDelivery).toFixed(2);
