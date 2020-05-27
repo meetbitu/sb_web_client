@@ -9,7 +9,6 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import coco from '../coco.png';
 import mos from '../mos.png';
-import tendon from '../tendon.png';
 import mitsuyado from '../mitsuyado.png';
 
 const OrderForm = ({ invite, cartItems, setCartItems }) => {
@@ -68,36 +67,41 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
       </header>
 
       <img src={mos} className="group-logo" alt="logo" />
-      <h3>Mos Burger</h3>
+      <h3>MOS Burger</h3>
 
       <LineItemForm
         name="MOS Cheeseburger"
         price="169"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <LineItemForm
         name="Teriyaki Chicken Burger"
         price="189"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <LineItemForm
         name="Yakiniku Garlic Rice Burger"
         price="189"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <LineItemForm
         name="Seafood Tempura Garlic Rice Burger"
         price="209"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <LineItemForm
         name="Teriyaki Chicken Garlic Rice Burger"
         price="229"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <h4>Family Pack</h4>
@@ -106,25 +110,28 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
         name="MOS Cheesburger Family Pack – 3 Pack"
         price="499"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <LineItemForm
         name="MOS Cheesburger Family Pack – 6 Pack"
         price="989"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
-
 
       <LineItemForm
         name="Yakiniku Garlic Rice Burger Family Pack – 3 Pack"
         price="549"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <LineItemForm
         name="Yakiniku Garlic Rice Burger Family Pack – 6 Pack"
         price="999"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <h4>Variety Pack</h4>
@@ -132,12 +139,14 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
         name="2 MOS Fries, 2 Sweet Potato Fries"
         price="383"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <LineItemForm
         name="2 MOS Fries, 2 Karaage"
         price="429"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <h4>MOS Chicken</h4>
@@ -145,36 +154,42 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
         name="MOS Chicken – 1 pc."
         price="179"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <LineItemForm
         name="MOS Chicken – 2 pc."
         price="349"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <LineItemForm
         name="MOS Chicken – 4 pc."
         price="699"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <LineItemForm
         name="Add Japanese Rice with Gravy"
         price="40"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <LineItemForm
         name="Add Gravy Sauce"
         price="20"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <LineItemForm
         name="Add Cheese Sauce"
         price="20"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <h4>Sides</h4>
@@ -182,34 +197,39 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
         name="MOS Fries"
         price="70"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <LineItemForm
         name="Sweet Potato"
         price="130"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <LineItemForm
         name="Poutine"
         price="150"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <LineItemForm
         name="Karaage"
         price="150"
         appendCartOrder={appendCartOrder}
+        category="MOS Burger"
       />
 
       <img src={coco} className="group-logo" alt="logo" />
-      <h3>CoCoIchibanya</h3>
+      <h3>CoCo Ichibanya</h3>
 
       <LineItemForm
         name="Chicken Cutlet Curry"
         price="357"
         options={spiceLevels}
         appendCartOrder={appendCartOrder}
+        category="CoCo Ichibanya"
       />
 
       <LineItemForm
@@ -217,6 +237,7 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
         price="347"
         options={spiceLevels}
         appendCartOrder={appendCartOrder}
+        category="CoCo Ichibanya"
       />
 
       <LineItemForm
@@ -224,6 +245,7 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
         price="378"
         appendCartOrder={appendCartOrder}
         options={spiceLevels}
+        category="CoCo Ichibanya"
       />
 
       <LineItemForm
@@ -231,6 +253,7 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
         price="399"
         appendCartOrder={appendCartOrder}
         options={spiceLevels}
+        category="CoCo Ichibanya"
       />
 
       <LineItemForm
@@ -238,6 +261,7 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
         price="378"
         appendCartOrder={appendCartOrder}
         options={spiceLevels}
+        category="CoCo Ichibanya"
       />
 
       <LineItemForm
@@ -245,6 +269,7 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
         price="305"
         appendCartOrder={appendCartOrder}
         options={spiceLevels}
+        category="CoCo Ichibanya"
       />
 
       <LineItemForm
@@ -252,6 +277,7 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
         price="357"
         appendCartOrder={appendCartOrder}
         options={spiceLevels}
+        category="CoCo Ichibanya"
       />
 
       <LineItemForm
@@ -259,6 +285,7 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
         price="357"
         options={spiceLevels}
         appendCartOrder={appendCartOrder}
+        category="CoCo Ichibanya"
       />
 
       <LineItemForm
@@ -266,6 +293,7 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
         price="357"
         options={spiceLevels}
         appendCartOrder={appendCartOrder}
+        category="CoCo Ichibanya"
       />
 
       <img src={mitsuyado} className="group-logo" alt="logo" />
@@ -274,30 +302,35 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
         name="Yuzu Tsukemen"
         price="321"
         appendCartOrder={appendCartOrder}
+        category="Mitsuyado Sei-Men"
       />
 
       <LineItemForm
         name="Karashi Tsukemen"
         price="353"
         appendCartOrder={appendCartOrder}
+        category="Mitsuyado Sei-Men"
       />
 
       <LineItemForm
         name="Pork Cutlet Don"
         price="221"
         appendCartOrder={appendCartOrder}
+        category="Mitsuyado Sei-Men"
       />
 
       <LineItemForm
         name="Chicken Karaage Don"
         price="221"
         appendCartOrder={appendCartOrder}
+        category="Mitsuyado Sei-Men"
       />
 
       <LineItemForm
         name="Chahan"
         price="188"
         appendCartOrder={appendCartOrder}
+        category="Mitsuyado Sei-Men"
       />
 
       <h4>Add-ons (cooked)</h4>
@@ -305,83 +338,29 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
         name="Pork Cutlet"
         price="144"
         appendCartOrder={appendCartOrder}
+        category="Mitsuyado Sei-Men"
       />
 
       <LineItemForm
         name="Gyoza"
         price="210"
         appendCartOrder={appendCartOrder}
+        category="Mitsuyado Sei-Men"
       />
 
       <LineItemForm
         name="Chicken Karaage"
         price="210"
         appendCartOrder={appendCartOrder}
+        category="Mitsuyado Sei-Men"
       />
 
       <LineItemForm
         name="Extra Cheese Sauce"
         price="89"
         appendCartOrder={appendCartOrder}
+        category="Mitsuyado Sei-Men"
       />
-
-      <img src={tendon} className="group-logo" alt="logo" />
-      <h3>Tendon Kohaku</h3>
-
-      <LineItemForm
-        name="Kohaku Tendon"
-        price="419"
-        appendCartOrder={appendCartOrder}
-      />
-
-      <LineItemForm
-        name="Kakiage Tendon"
-        price="343"
-        appendCartOrder={appendCartOrder}
-      />
-
-      <LineItemForm
-        name="Shrimp Tendon (8pcs)"
-        price="530"
-        appendCartOrder={appendCartOrder}
-      />
-
-      <LineItemForm
-        name="Shrimp Tendon (5pc)"
-        price="419"
-        appendCartOrder={appendCartOrder}
-      />
-
-      <LineItemForm
-        name="Pork Katsudon"
-        price="375"
-        appendCartOrder={appendCartOrder}
-      />
-
-      <LineItemForm
-        name="Yakibuta Don"
-        price="353"
-        appendCartOrder={appendCartOrder}
-      />
-
-      <LineItemForm
-        name="Kohaku Japanese White Rice"
-        price="56"
-        appendCartOrder={appendCartOrder}
-      />
-
-      <LineItemForm
-        name="Wild Tiger Prawn Tempura (5pcs)"
-        price="387"
-        appendCartOrder={appendCartOrder}
-      />
-
-      <LineItemForm
-        name="Spicy Sweet Fried Chicken"
-        price="309"
-        appendCartOrder={appendCartOrder}
-      />
-
     </div>
   );
 }

@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import Mixpanel from '../imports/Mixpanel';
 
-function LineItemForm({ name, options, price, appendCartOrder }) {
+function LineItemForm({ name, options, price, appendCartOrder, category }) {
   const [expanded, setExpanded] = useState(false);
 
   const initialInput = {
@@ -31,6 +31,7 @@ function LineItemForm({ name, options, price, appendCartOrder }) {
       additions: input.additions,
       quantity,
       price,
+      category,
     }
 
     if (options && !input.options) {
