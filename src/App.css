@@ -133,6 +133,10 @@ button[type=submit]:hover {
   white-space: pre-line;
 }
 
+.content {
+  padding: 0 10px;
+}
+
 .quantity-widget {
   text-align: center;
 }

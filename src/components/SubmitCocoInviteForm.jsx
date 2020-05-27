@@ -8,6 +8,8 @@ function SubmitCocoInviteForm({ setInvite, inviteService }) {
   const initialState = {
       splitCost: '',
       perCustomerFee: '',
+      paymentInstructions: '',
+      pickupInstructions: '',
       orderTitle: "Let's order CoCo together!",
   };
   const [input, setInput] = useState(initialState);
@@ -42,7 +44,8 @@ function SubmitCocoInviteForm({ setInvite, inviteService }) {
       timestamp: Date.now(),
       splitCost: input.splitCost,
       perCustomerFee: input.perCustomerFee,
-      instructions: input.instructions,
+      paymentInstructions: input.paymentInstructions,
+      pickupInstructions: input.pickupInstructions,
     }).then((data) => {
       setInvite(data);
 
@@ -84,9 +87,14 @@ function SubmitCocoInviteForm({ setInvite, inviteService }) {
         placeholder="Fixed fees per order"
       />
       <textarea
-        name="instructions"
+        name="pickupInstructions"
         onChange={handleInputChange}
-        placeholder="Payment or other instructions to the customer"
+        placeholder="Pickup instructions"
+      />
+      <textarea
+        name="paymentInstructions"
+        onChange={handleInputChange}
+        placeholder="Payment instructions"
       />
       <div className="form-actions">
         <button

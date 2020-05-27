@@ -116,7 +116,13 @@ function Checkout({ invite, cartItems, cartItemsUpdateCheck, setCartItems, order
         </form>
       }
       {checkoutComplete && invite.instructions &&
-        <p className="instructions multi-line-text">{invite.instructions}</p>
+        <p className="instructions multi-line-text content">{invite.instructions}</p>
+      }
+      {checkoutComplete && invite.paymentInstructions &&
+        <p className="instructions multi-line-text content">{invite.paymentInstructions}</p>
+      }
+      {checkoutComplete && invite.pickupInstructions &&
+        <p className="instructions multi-line-text content">{invite.pickupInstructions}</p>
       }
     </div>
   );
