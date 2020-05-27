@@ -7,7 +7,7 @@ import Mixpanel from '../imports/Mixpanel';
 function SubmitCocoInviteForm({ setInvite, inviteService }) {
   const initialState = {
       splitCost: '',
-      perCustomerFee: '',
+      perCustomerFee: 100,
       paymentInstructions: '',
       pickupInstructions: '',
       orderTitle: "Let's order CoCo together!",
@@ -64,38 +64,50 @@ function SubmitCocoInviteForm({ setInvite, inviteService }) {
       className="submit-request"
       onSubmit={submitRequest}
     >
-      <input
-        type="text"
-        name="orderTitle"
-        value={input.orderTitle}
-        onChange={handleInputChange}
-      />
-      <input
-        type="number"
-        step="0.01"
-        name="splitCost"
-        value={input.splitCost}
-        onChange={handleInputChange}
-        placeholder="Delivery fee and other split costs"
-      />
-      <input
-        type="number"
-        step="0.01"
-        name="perCustomerFee"
-        value={input.perCustomerFee}
-        onChange={handleInputChange}
-        placeholder="Fixed fees per order"
-      />
-      <textarea
-        name="pickupInstructions"
-        onChange={handleInputChange}
-        placeholder="Pickup instructions"
-      />
-      <textarea
-        name="paymentInstructions"
-        onChange={handleInputChange}
-        placeholder="Payment instructions"
-      />
+      <label className="content">
+        Name of your invite
+        <input
+          type="text"
+          name="orderTitle"
+          value={input.orderTitle}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label className="content">
+        Delivery fee and other split costs
+        <input
+          type="number"
+          step="0.01"
+          name="splitCost"
+          value={input.splitCost}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label className="content">
+        Fixed fee per order
+        <input
+          type="number"
+          step="0.01"
+          name="perCustomerFee"
+          disabled
+          value={input.perCustomerFee}
+          onChange={handleInputChange}
+        />
+      </label>
+      <label className="content">
+        Pickup instructions
+        <textarea
+          name="pickupInstructions"
+          onChange={handleInputChange}
+        />
+      </label>
+      <label className="content">
+      Payment instructions
+        <textarea
+          name="paymentInstructions"
+          onChange={handleInputChange}
+        />
+      </label>
       <div className="form-actions">
         <button
           type="submit"
