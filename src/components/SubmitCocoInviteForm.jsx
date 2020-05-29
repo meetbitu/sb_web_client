@@ -46,9 +46,38 @@ function SubmitCocoInviteForm({ setInvite, inviteService, userService, user, aut
         return;
       }
 
-      userService.create({
+      // Try to log them in first
+      authenticate({
+        strategy: 'local',
         username: input.username,
         password: input.username,
+      })
+      .then(() => {
+        console.log('logged in');
+
+        return inviteService.create({
+          text: input.orderTitle,
+          timestamp: Date.now(),
+          splitCost: input.splitCost,
+          perCustomerFee: input.perCustomerFee,
+          paymentInstructions: input.paymentInstructions,
+          pickupInstructions: input.pickupInstructions,
+        });
+      })
+      .then(data => {
+        setInvite(data);
+        console.log(data);
+
+        Mixpanel.track('Successfully created a request');
+
+        // Should we update the browser address?
+      })
+      .catch(() => {
+        // Create a new user
+        return userService.create({
+          username: input.username,
+          password: input.username,
+        });
       })
       .then(data => {
         console.log(data);

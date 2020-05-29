@@ -222,7 +222,6 @@ function App() {
       );
     }
     else if (inviteTypeData) {
-      // put a login form here
       if (inviteTypeData.type === 'coco') {
         render = (
           <SubmitCocoInviteForm
