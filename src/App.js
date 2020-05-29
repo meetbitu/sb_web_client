@@ -1,4 +1,5 @@
 import feathers from '@feathersjs/client';
+import auth from '@feathersjs/authentication-client';
 import io from 'socket.io-client';
 import React, {
   useEffect,
@@ -30,10 +31,12 @@ import mitsuyado from './mitsuyado.png';
 const socket = io(process.env.REACT_APP_API_URL);
 const client = feathers();
 client.configure(feathers.socketio(socket));
+client.configure(auth());
 
 // Feathers Services
 const inviteService = client.service('invites');
 const orderService = client.service('orders');
+const userService = client.service('users');
 
 function App() {
   const paramsString = window.location.search;
@@ -54,6 +57,7 @@ function App() {
   // ordersUpdateCheck is used to re-render the orders list. Uncomment when we display orders again.
   const [ordersUpdateCheck, setOrdersUpdateCheck] = useState('');
   const [inviteTypeData, setInviteTypeData] = useState(null);
+  const [user, setUser] = useState(null);
 
   /**
    * Invite service
@@ -151,6 +155,35 @@ function App() {
     setCartItemsUpdateCheck(JSON.stringify(items));
   }
 
+  // Try manually running auth code here
+  // client.service('users').create({
+  //   username: 'my@email.com',
+  //   password: 'my-password',
+  // });
+  client.reAuthenticate().then(() => {
+     console.log('authenticated');
+  })
+  .then(() => {
+    client.get('authentication').then((userResponse) => {
+      setUser(userResponse.user.username);
+      console.log(user);
+    });
+  })
+  .catch(() => {
+    // show login page
+    // client.authenticate({
+    //   strategy: 'local',
+    //   username: 'my@email.com',
+    //   password: 'my-password',
+    // }).then(() => {
+    //   // Logged in
+    //   console.log('logged in');
+    // }).catch(e => {
+    //   // Show login page (potentially with `e.message`)
+    //   console.error('Authentication error', e);
+    // });
+  });
+
   function renderMain() {
     let render = null;
     if (displayOrders && invite) {
@@ -189,11 +222,15 @@ function App() {
       );
     }
     else if (inviteTypeData) {
+      // put a login form here
       if (inviteTypeData.type === 'coco') {
         render = (
           <SubmitCocoInviteForm
             setInvite={setInvite}
             inviteService={inviteService}
+            userService={userService}
+            user={user}
+            authenticate={client.authenticate}
           />
         );
       }

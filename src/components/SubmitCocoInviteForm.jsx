@@ -4,13 +4,14 @@ import React, {
 } from 'react';
 import Mixpanel from '../imports/Mixpanel';
 
-function SubmitCocoInviteForm({ setInvite, inviteService }) {
+function SubmitCocoInviteForm({ setInvite, inviteService, userService, user, authenticate }) {
   const initialState = {
       splitCost: '',
       perCustomerFee: 100,
       paymentInstructions: '',
       pickupInstructions: '',
       orderTitle: "Let's order CoCo together!",
+      username: user ? user : '',
   };
   const [input, setInput] = useState(initialState);
   const [startedTyping, setTyping] = useState(false);
@@ -38,25 +39,70 @@ function SubmitCocoInviteForm({ setInvite, inviteService }) {
   function submitRequest(event) {
     event.preventDefault();
 
-    // Use the invites service from the server
-    inviteService.create({
-      text: input.orderTitle,
-      timestamp: Date.now(),
-      splitCost: input.splitCost,
-      perCustomerFee: input.perCustomerFee,
-      paymentInstructions: input.paymentInstructions,
-      pickupInstructions: input.pickupInstructions,
-    }).then((data) => {
-      setInvite(data);
+    // If we don't have a user then create one from the phone number
+    if (!user) {
+      if (input.username === '') {
+        alert('Phone number is required');
+        return;
+      }
 
-      Mixpanel.track('Successfully created a request');
+      userService.create({
+        username: input.username,
+        password: input.username,
+      })
+      .then(data => {
+        console.log(data);
 
-      // Should we update the browser address?
-    }).catch(e => {
-      console.log(e);
-      // @TODO: Display an error message
-    });
+        return authenticate({
+          strategy: 'local',
+          username: input.username,
+          password: input.username,
+        });
+      })
+      .then(data => {
+        console.log('logged in');
 
+        return inviteService.create({
+          text: input.orderTitle,
+          timestamp: Date.now(),
+          splitCost: input.splitCost,
+          perCustomerFee: input.perCustomerFee,
+          paymentInstructions: input.paymentInstructions,
+          pickupInstructions: input.pickupInstructions,
+        });
+      })
+      .then(data => {
+        setInvite(data);
+        console.log(data);
+
+        Mixpanel.track('Successfully created a request');
+
+        // Should we update the browser address?
+      })
+      .catch(e => console.log(e));
+    }
+    else {
+      // If we do have a user then go ahead and create the invite
+      // Use the invites service from the server
+      inviteService.create({
+        text: input.orderTitle,
+        timestamp: Date.now(),
+        splitCost: input.splitCost,
+        perCustomerFee: input.perCustomerFee,
+        paymentInstructions: input.paymentInstructions,
+        pickupInstructions: input.pickupInstructions,
+      }).then((data) => {
+        setInvite(data);
+        console.log(data);
+
+        Mixpanel.track('Successfully created a request');
+
+        // Should we update the browser address?
+      }).catch(e => {
+        console.log(e);
+        // @TODO: Display an error message
+      });
+    }
   }
 
   return (
@@ -98,6 +144,7 @@ function SubmitCocoInviteForm({ setInvite, inviteService }) {
         Pickup instructions
         <textarea
           name="pickupInstructions"
+          value={input.pickupInstructions}
           onChange={handleInputChange}
         />
       </label>
@@ -105,9 +152,35 @@ function SubmitCocoInviteForm({ setInvite, inviteService }) {
       Payment instructions
         <textarea
           name="paymentInstructions"
+          value={input.paymentInstructions}
           onChange={handleInputChange}
         />
       </label>
+      {user &&
+        <label className="content">
+        Phone number
+          <input
+            type="text"
+            name="username"
+            disabled
+            readOnly
+            value={input.username}
+          />
+          <p className="description">You will use this number to log in and place the order for your friends</p>
+        </label>
+      }
+      {!user &&
+        <label className="content">
+        Phone number
+          <input
+            type="text"
+            name="username"
+            onChange={handleInputChange}
+            value={input.username}
+          />
+          <p className="description">You will use this number to log in and place the order for your friends</p>
+        </label>
+      }
       <div className="form-actions">
         <button
           type="submit"
