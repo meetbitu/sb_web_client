@@ -1,12 +1,13 @@
 import React from 'react';
 import LineItem from './LineItem.jsx';
 
-function CheckoutCostSummary({ items, removeCartItem, total, invite, orderCount }) {
+function CheckoutCostSummary({ items, removeCartItem, total, invite, orderCount, checkoutComplete }) {
+
   const renderedItems = items.map((item, index) => (
     <LineItem
       item={item}
       key={index}
-      removeCartItem={removeCartItem}
+      removeCartItem={checkoutComplete ? null : removeCartItem}
     />
   ));
 

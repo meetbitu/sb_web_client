@@ -93,6 +93,7 @@ function Checkout({ invite, cartItems, cartItemsUpdateCheck, setCartItems, order
         invite={invite}
         total={total}
         orderCount={projectedCustomerCount}
+        checkoutComplete={checkoutComplete}
       />
       {!checkoutComplete &&
         <form

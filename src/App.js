@@ -164,12 +164,14 @@ function App() {
      console.log('authenticated');
   })
   .then(() => {
-    client.get('authentication').then((userResponse) => {
-      setUser(userResponse.user.username);
-      console.log(user);
-    });
+    return client.get('authentication');
   })
-  .catch(() => {
+  .then((userResponse) => {
+    setUser(userResponse.user.username);
+    console.log(user);
+  })
+  .catch(error => {
+    console.log(error);
     // show login page
     // client.authenticate({
     //   strategy: 'local',
