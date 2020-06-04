@@ -28,7 +28,10 @@ import mitsuyado from './mitsuyado.png';
 /**
  * Feathers websocket connection
  */
-const socket = io(process.env.REACT_APP_API_URL);
+const socket = io(process.env.REACT_APP_API_URL, {
+  transports: ['websocket'],
+  forceNew: true
+});
 const client = feathers();
 client.configure(feathers.socketio(socket));
 client.configure(auth());
