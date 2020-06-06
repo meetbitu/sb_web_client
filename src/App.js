@@ -160,7 +160,7 @@ function App() {
 
   // Try manually running auth code here
   // client.service('users').create({
-  //   username: 'my@email.com',
+  //   userIdentifier: 'my@email.com',
   //   password: 'my-password',
   // });
   client.reAuthenticate().then(() => {
@@ -170,7 +170,7 @@ function App() {
     return client.get('authentication');
   })
   .then((userResponse) => {
-    setUser(userResponse.user.username);
+    setUser(userResponse.user.userIdentifier);
     console.log(user);
   })
   .catch(error => {
@@ -178,7 +178,7 @@ function App() {
     // show login page
     // client.authenticate({
     //   strategy: 'local',
-    //   username: 'my@email.com',
+    //   userIdentifier: 'my@email.com',
     //   password: 'my-password',
     // }).then(() => {
     //   // Logged in

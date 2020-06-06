@@ -11,7 +11,7 @@ function SubmitCocoInviteForm({ setInvite, inviteService, userService, user, aut
       paymentInstructions: '',
       pickupInstructions: '',
       orderTitle: "Let's order CoCo together!",
-      username: user ? user : '',
+      userIdentifier: user ? user : '',
   };
   const [input, setInput] = useState(initialState);
   const [startedTyping, setTyping] = useState(false);
@@ -41,7 +41,7 @@ function SubmitCocoInviteForm({ setInvite, inviteService, userService, user, aut
 
     // If we don't have a user then create one from the phone number
     if (!user) {
-      if (input.username === '') {
+      if (input.userIdentifier === '') {
         alert('Phone number is required');
         return;
       }
@@ -49,8 +49,8 @@ function SubmitCocoInviteForm({ setInvite, inviteService, userService, user, aut
       // Try to log them in first
       authenticate({
         strategy: 'local',
-        username: input.username,
-        password: input.username,
+        userIdentifier: input.userIdentifier,
+        password: input.userIdentifier,
       })
       .then(() => {
         console.log('logged in');
@@ -75,8 +75,8 @@ function SubmitCocoInviteForm({ setInvite, inviteService, userService, user, aut
       .catch(() => {
         // Create a new user
         return userService.create({
-          username: input.username,
-          password: input.username,
+          userIdentifier: input.userIdentifier,
+          password: input.userIdentifier,
         });
       })
       .then(data => {
@@ -84,8 +84,8 @@ function SubmitCocoInviteForm({ setInvite, inviteService, userService, user, aut
 
         return authenticate({
           strategy: 'local',
-          username: input.username,
-          password: input.username,
+          userIdentifier: input.userIdentifier,
+          password: input.userIdentifier,
         });
       })
       .then(data => {
@@ -190,10 +190,10 @@ function SubmitCocoInviteForm({ setInvite, inviteService, userService, user, aut
         Phone number
           <input
             type="text"
-            name="username"
+            name="userIdentifier"
             disabled
             readOnly
-            value={input.username}
+            value={input.userIdentifier}
           />
           <p className="description">You will use this number to log in and place the order for your friends</p>
         </label>
@@ -203,9 +203,9 @@ function SubmitCocoInviteForm({ setInvite, inviteService, userService, user, aut
         Phone number
           <input
             type="text"
-            name="username"
+            name="userIdentifier"
             onChange={handleInputChange}
-            value={input.username}
+            value={input.userIdentifier}
           />
           <p className="description">You will use this number to log in and place the order for your friends</p>
         </label>
