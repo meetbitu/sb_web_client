@@ -163,30 +163,15 @@ function App() {
   //   userIdentifier: 'my@email.com',
   //   password: 'my-password',
   // });
-  client.reAuthenticate().then(() => {
-     console.log('authenticated');
-  })
+  client.reAuthenticate()
   .then(() => {
     return client.get('authentication');
   })
   .then((userResponse) => {
     setUser(userResponse.user.userIdentifier);
-    console.log(user);
   })
   .catch(error => {
     console.log(error);
-    // show login page
-    // client.authenticate({
-    //   strategy: 'local',
-    //   userIdentifier: 'my@email.com',
-    //   password: 'my-password',
-    // }).then(() => {
-    //   // Logged in
-    //   console.log('logged in');
-    // }).catch(e => {
-    //   // Show login page (potentially with `e.message`)
-    //   console.error('Authentication error', e);
-    // });
   });
 
   function renderMain() {
