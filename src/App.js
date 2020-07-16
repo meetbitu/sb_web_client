@@ -23,7 +23,7 @@ import './App.css';
 import coco from './coco.png';
 import mos from './mos.png';
 import tendon from './tendon.png';
-import mitsuyado from './mitsuyado.png';
+// import mitsuyado from './mitsuyado.png';
 
 /**
  * Feathers websocket connection
@@ -254,10 +254,10 @@ function App() {
     <div className={appClasses}>
       <header className="App-header">
         <div className="logos">
-          <img src={coco} className="App-logo" alt="logo" />
           <img src={mos} className="App-logo" alt="logo" />
+          <img src={coco} className="App-logo" alt="logo" />
           <img src={tendon} className="App-logo" alt="logo" />
-          <img src={mitsuyado} className="App-logo" alt="logo" />
+          {/*<img src={mitsuyado} className="App-logo" alt="logo" />*/}
         </div>
         <h1>Make Sabay</h1>
       </header>

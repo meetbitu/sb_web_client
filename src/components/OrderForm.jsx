@@ -8,8 +8,9 @@ import React, {
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import coco from '../coco.png';
+// import mitsuyado from '../mitsuyado.png';
 import mos from '../mos.png';
-import mitsuyado from '../mitsuyado.png';
+import tendon from '../tendon.png';
 
 const OrderForm = ({ invite, cartItems, setCartItems }) => {
   const defaultCopyText = 'Copy invite link to send to your friends';
@@ -70,6 +71,13 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
       <h3>MOS Burger</h3>
 
       <LineItemForm
+        name="Wagyu Burger"
+        price="309"
+        appendCartOrder={appendCartOrder}
+        category="MOS Burger"
+      />
+
+      <LineItemForm
         name="MOS Cheeseburger"
         price="169"
         appendCartOrder={appendCartOrder}
@@ -79,6 +87,13 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
       <LineItemForm
         name="Teriyaki Chicken Burger"
         price="189"
+        appendCartOrder={appendCartOrder}
+        category="MOS Burger"
+      />
+
+      <LineItemForm
+        name="Wagyu Garlic Rice Burger"
+        price="329"
         appendCartOrder={appendCartOrder}
         category="MOS Burger"
       />
@@ -296,6 +311,7 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
         category="CoCo Ichibanya"
       />
 
+      {/*
       <img src={mitsuyado} className="group-logo" alt="logo" />
       <h3>Mitsuyado Sei-Men</h3>
       <LineItemForm
@@ -360,6 +376,87 @@ const OrderForm = ({ invite, cartItems, setCartItems }) => {
         price="89"
         appendCartOrder={appendCartOrder}
         category="Mitsuyado Sei-Men"
+      />
+      */}
+
+      <img src={tendon} className="group-logo" alt="logo" />
+      <h3>Tendon Kohaku</h3>
+
+      <LineItemForm
+        name="Spicy Tuna Baked Sushi"
+        price="629"
+        appendCartOrder={appendCartOrder}
+        category="Tendon Kohaku"
+      />
+
+      <LineItemForm
+        name="Smoked Salmon and Unagi Baked Sushi"
+        price="679"
+        appendCartOrder={appendCartOrder}
+        category="Tendon Kohaku"
+      />
+
+      <LineItemForm
+        name="Seafood Special Baked Sushi"
+        price="679"
+        appendCartOrder={appendCartOrder}
+        category="Tendon Kohaku"
+      />
+
+      <LineItemForm
+        name="Kohaku Tendon"
+        price="419"
+        appendCartOrder={appendCartOrder}
+        category="Tendon Kohaku"
+      />
+
+      <LineItemForm
+        name="Kakiage Tendon"
+        price="343"
+        appendCartOrder={appendCartOrder}
+        category="Tendon Kohaku"
+      />
+
+      <LineItemForm
+        name="Shrimp Tendon (8pcs)"
+        price="530"
+        appendCartOrder={appendCartOrder}
+        category="Tendon Kohaku"
+      />
+
+      <LineItemForm
+        name="Shrimp Tendon (5pc)"
+        price="419"
+        appendCartOrder={appendCartOrder}
+        category="Tendon Kohaku"
+      />
+
+      <LineItemForm
+        name="Hanakatsu Don"
+        price="378"
+        appendCartOrder={appendCartOrder}
+        category="Tendon Kohaku"
+      />
+
+      <LineItemForm
+        name="Yakibuta Don"
+        price="353"
+        appendCartOrder={appendCartOrder}
+        category="Tendon Kohaku"
+      />
+
+      <LineItemForm
+        name="Kohaku Japanese White Rice"
+        price="56"
+        appendCartOrder={appendCartOrder}
+        category="Tendon Kohaku"
+      />
+
+      <LineItemForm
+        name="Wild Tiger Prawn Tempura (5pcs)"
+        price="387"
+        appendCartOrder={appendCartOrder}
+        category="Tendon Kohaku"
       />
     </div>
   );
