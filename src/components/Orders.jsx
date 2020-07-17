@@ -15,6 +15,7 @@ function Orders({ orders, orderService, ordersUpdateCheck, invite }) {
   //   displayCost: false,
   // }]);
   const [displayOrders, setDisplayOrders] = useState([]);
+  const [category, setCategory] = useState("all");
 
   // const initialCost = !isNaN(invite.splitCost) ? invite.splitCost : 0;
   // const [splitCost, setSplitCost] = useState(initialCost);
@@ -151,8 +152,23 @@ function Orders({ orders, orderService, ordersUpdateCheck, invite }) {
     }
 
     return (
-      <div className="orders">
+      <div className={`orders ${category}`}>
         <h2>{invite.text}</h2>
+        <button onClick={() => { setCategory("all") }}>
+          All
+        </button>
+        <button onClick={() => { setCategory("mos-burger") }}>
+          MOS Burger
+        </button>
+        <button onClick={() => { setCategory("coco-ichibanya") }}>
+          CoCo Ichibanya
+        </button>
+        <button onClick={() => { setCategory("mitsuyado-sei-men") }}>
+          Mitsuyado Sei-Men
+        </button>
+        <button onClick={() => { setCategory("tendon-kohaku") }}>
+          Tendon Kohaku
+        </button>
         {orders.map(order => {
           const projectedCustomerCount = orders.length;
           // let price = n => isNaN(n.price) ? 0 : parseFloat(n.price) * parseFloat(n.quantity);
@@ -190,14 +206,13 @@ function Orders({ orders, orderService, ordersUpdateCheck, invite }) {
         })}
       </div>
     );
-  }, [orders, invite, orderService]);
+  }, [orders, invite, orderService, category]);
 
   useEffect(() => {
     setDisplayOrders(
       renderOrders()
     );
   }, [renderOrders, ordersUpdateCheck]);
-
 
   return (
     <div>

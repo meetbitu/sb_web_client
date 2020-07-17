@@ -297,3 +297,18 @@ button.toggle-order-status {
   padding-right: 50px;
   margin-bottom: 10px;
 }
+
+.orders .line-item {
+  display: none;
+}
+
+.orders.all .line-item,
+.orders.mos-burger .line-item.mos-burger,
+.orders.coco-ichibanya .line-item.coco-ichibanya,
+.orders.tendon-kohaku .line-item.tendon-kohaku {
+  display: block;
+}
+
+.orders.mitsuyado-sei-men .line-item.mitsuyado-sei-men {
+  display: block;
+}

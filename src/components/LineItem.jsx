@@ -3,9 +3,10 @@ import React from 'react';
 function LineItem({ item, removeCartItem }) {
   // @TODO: the key should be a line item id once we start storing that in the db
   const totalPrice = parseFloat(item.quantity) * parseFloat(item.price);
+  const categoryClass = item.category.replace( " ", "-" ).toLowerCase();
 
   return (
-    <div className="line-item" key={item.order}>
+    <div className={`line-item ${categoryClass}`} key={item.order}>
       {removeCartItem &&
         <span
           role="img"
