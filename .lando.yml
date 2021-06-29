@@ -3,6 +3,7 @@ services:
   appserver:
     type: node
     build:
+      - echo "REACT_APP_API_URL=http://social-buying-web-client.lndo.site" > '.env.local'
       - yarn install
 tooling:
   yarn:
